@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { Component,inject } from '@angular/core';
+import { RmItemService } from '../../../../services/rmItem.service';
 
 @Component({
   selector: 'app-rms-add-items',
@@ -9,6 +9,8 @@ import { FormsModule, NgForm } from '@angular/forms';
   styleUrl: './rms-add-items.component.css',
 })
 export class RmsAddItemsComponent {
+  RmItemSerivce = inject(RmItemService);
+
   showSuccessMessage: boolean = false;
   
   addItem(event: SubmitEvent) {
@@ -31,5 +33,12 @@ export class RmsAddItemsComponent {
       this.showSuccessMessage = false;
     }, 2000);
     form.reset();
+    
+    const RmItem ={
+      itemName: ItemName,
+      pgNonPg: pgnonpg,
+      section: section,
+    }
+    this.RmItemSerivce.createRmItem(RmItem);
   }
 }

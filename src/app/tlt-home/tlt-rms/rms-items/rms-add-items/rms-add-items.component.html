@@ -31,7 +31,7 @@
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
       <div class="grid gap-4 mb-4 ">
         <form (submit)="addItem($event) ">
-          <div class="mb-6 mt-8">
+          <div class="mb-6 mt-4">
             <label for="item_name" class="block mb-2 text-lg font-medium text-white dark:text-gray-800">Item
               Name</label>
             <input minlength="1" name="itemname" type="text" id="item_name"
@@ -43,8 +43,8 @@
               PG</label>
             <select name="pgnonpg" id="pgnonpg"
               class="bg-gray-50 border border-gray-300 text-gray-800 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
-              <option value="PG">PG</option>
-              <option value="Non PG">Non PG</option>
+              <option value="pg">PG</option>
+              <option value="nonPg">Non PG</option>
             </select>
           </div>
           <div class="mb-6 mt-8">
