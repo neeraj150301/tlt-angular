@@ -1,0 +1,7 @@
+#navbar-hamburger {
+    position: absolute;
+    top: calc(100% - 16px); 
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }

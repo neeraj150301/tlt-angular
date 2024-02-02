@@ -1,0 +1,125 @@
+<div class="flex justify-center h-screen">
+  <div class="p-4 sm:ml-64 mt-12 w-full ">
+    @if (showSuccessMessage) {
+    <div class="flex justify-center">
+      <div role="alert" class="rounded-xl border border-gray-100 bg-white p-4 w-96 mb-8 ">
+        <div class="flex items-start gap-4 ">
+          <span class="text-green-600">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="h-6 w-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </span>
+          <div class="flex-1">
+            <strong class="block font-medium text-gray-900"> Changes saved </strong>
+            <p class="mt-1 text-sm text-gray-700">Item is added successfully.</p>
+          </div>
+
+          <!-- Dismiss button -->
+          <button class="text-gray-500 transition hover:text-gray-600" (click)="showSuccessMessage = false">
+            <span class="sr-only">Dismiss popup</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="h-6 w-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+      <div class="grid gap-4 mb-4 ">
+        <form (submit)="addItem($event) ">
+          <div class="mb-6 mt-8">
+            <label for="item_name" class="block mb-2 text-lg font-medium text-white dark:text-gray-800">Item
+              Name</label>
+            <input minlength="1" name="itemname" type="text" id="item_name"
+              class="bg-gray-50 border border-gray-300 text-gray-800 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+              placeholder="Enter Item Name" required>
+          </div>
+          <div class="mb-6 mt-8">
+            <label for="pgnonpg" class="block mb-2 text-lg font-medium text-white dark:text-gray-800">PG - Non
+              PG</label>
+            <select name="pgnonpg" id="pgnonpg"
+              class="bg-gray-50 border border-gray-300 text-gray-800 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <option value="PG">PG</option>
+              <option value="Non PG">Non PG</option>
+            </select>
+          </div>
+          <div class="mb-6 mt-8">
+            <label for="section" class="block mb-2 text-lg font-medium text-white dark:text-gray-800">Section</label>
+            <select name="section" id="section"
+              class="bg-gray-50 border border-gray-300 text-gray-800 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <option value="40 X 40 X 4">40 X 40 X 4</option>
+              <option value="40 X 40 X 5">40 X 40 X 5</option>
+              <option value="40 X 40 X 6">40 X 40 X 6</option>
+
+              <option value="45 X 30 X 4">45 X 30 X 4</option>
+              <option value="45 X 30 X 5">45 X 30 X 5</option>
+
+              <option value="45 X 45 X 4">45 X 45 X 4</option>
+              <option value="45 X 45 X 5">45 X 45 X 5</option>
+              <option value="45 X 45 X 6">45 X 45 X 6</option>
+
+              <option value="50 X 50 X 4">50 X 50 X 4</option>
+              <option value="50 X 50 X 5">50 X 50 X 5</option>
+              <option value="50 X 50 X 6">50 X 50 X 6</option>
+
+              <option value="55 X 55 X 4">55 X 55 X 4</option>
+              <option value="55 X 55 X 5">55 X 55 X 5</option>
+              <option value="55 X 55 X 6">55 X 55 X 6</option>
+
+              <option value="60 X 60 X 4">60 X 60 X 4</option>
+              <option value="60 X 60 X 5">60 X 60 X 5</option>
+              <option value="60 X 60 X 6">60 X 60 X 6</option>
+
+              <option value="65 X 65 X 4">65 X 65 X 4</option>
+              <option value="65 X 65 X 5">65 X 65 X 5</option>
+              <option value="65 X 65 X 6">65 X 65 X 6</option>
+              <option value="65 X 65 X 8">65 X 65 X 8</option>
+
+              <option value="70 X 70 X 5">70 X 70 X 5</option>
+              <option value="70 X 70 X 6">70 X 70 X 6</option>
+              <option value="70 X 70 X 7">70 X 70 X 7</option>
+
+              <option value="75 X 75 X 4">75 X 75 X 4</option>
+              <option value="75 X 75 X 5">75 X 75 X 5</option>
+              <option value="75 X 75 X 6">75 X 75 X 6</option>
+              <option value="75 X 75 X 8">75 X 75 X 8</option>
+              <option value="75 X 75 X 10">75 X 75 X 10</option>
+
+              <option value="80 X 80 X 5">80 X 80 X 5</option>
+              <option value="80 X 80 X 6">80 X 80 X 6</option>
+              <option value="80 X 80 X 8">80 X 80 X 8</option>
+
+              <option value="90 X 90 X 5">90 X 90 X 5</option>
+              <option value="90 X 90 X 6">90 X 90 X 6</option>
+              <option value="90 X 90 X 7">90 X 90 X 7</option>
+              <option value="90 X 90 X 8">90 X 90 X 8</option>
+              <option value="90 X 90 X 10">90 X 90 X 10</option>
+
+              <option value="100 X 100 X 6">100 X 100 X 6</option>
+              <option value="100 X 100 X 7">100 X 100 X 7</option>
+              <option value="100 X 100 X 8">100 X 100 X 8</option>
+              <option value="100 X 100 X 10">100 X 100 X 10</option>
+              <option value="100 X 100 X 12">100 X 100 X 12</option>
+
+              <option value="110 X 110 X 6">110 X 110 X 6</option>
+              <option value="110 X 110 X 8">110 X 110 X 8</option>
+              <option value="110 X 110 X 10">110 X 110 X 10</option>
+              <option value="110 X 110 X 12">110 X 110 X 12</option>
+
+            </select>
+          </div>
+          <div class="flex justify-center">
+            <button type="submit"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">Submit</button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
