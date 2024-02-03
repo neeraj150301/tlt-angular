@@ -9,7 +9,8 @@ import { RmItemService } from '../../../../services/rmItem.service';
   styleUrl: './rms-add-items.component.css',
 })
 export class RmsAddItemsComponent {
-  RmItemSerivce = inject(RmItemService);
+  // RmItemSerivce = inject(RmItemService);
+  constructor(private rmItemService: RmItemService) {}
 
   showSuccessMessage: boolean = false;
   
@@ -38,7 +39,10 @@ export class RmsAddItemsComponent {
       itemName: ItemName,
       pgNonPg: pgnonpg,
       section: section,
+      stockAmount:0,
+      createdBy:'',
+
     }
-    this.RmItemSerivce.createRmItem(RmItem);
+    this.rmItemService.createRmItem(RmItem);
   }
 }

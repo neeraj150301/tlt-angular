@@ -87,13 +87,14 @@
                           ease-in-out
                           duration-100
                         " [ngClass]="{
-                          'bg-blue-500 text-white': isToday(date) === true,
-                          'text-gray-700 hover:bg-blue-200': isToday(date) === false
+                          'bg-blue-500 text-white': isDateSelected(date),
+                          'text-gray-700 hover:bg-blue-200': !isDateSelected(date)
                         }">
                       {{ date }}
                     </div>
                   </div>
                 </ng-container>
+                
               </div>
             </div>
           </div>

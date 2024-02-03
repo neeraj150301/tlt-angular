@@ -14,11 +14,15 @@ export class RmItemService{
     createRmItem(data: RmItem) {
         this.http
           .post(
-            `${environment.apiBaseUrl}/tlt-user`,
+            `${environment.apiBaseUrl}/rm-item`,
             data
           )
           .subscribe((res) => {
             console.log(res);
           });
+          this.getRmItems();
       }
+      getRmItems() {
+        return this.http.get<any>(`${environment.apiBaseUrl}/rm-item`);
+    }
 }

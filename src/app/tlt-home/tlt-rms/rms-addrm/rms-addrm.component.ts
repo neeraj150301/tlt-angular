@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { DatePickerComponent } from '../../../widget/date-picker/date-picker.component';
+import { RmItemService } from '../../../services/rmItem.service';
+import { RmItem } from '../../../Model/tltRmItemModel';
 
 @Component({
   selector: 'app-rms-addrm',
@@ -10,10 +12,26 @@ import { DatePickerComponent } from '../../../widget/date-picker/date-picker.com
 })
 export class RmsAddrmComponent {
   showSuccessMessage: boolean = false;
+  showItemList: boolean = false;
   Date!: string;
+  constructor(private rmItemService: RmItemService) {}
+  RmItems: RmItem[] = [];
+  ngOnInit() {
+    this.fetchRmItems();
+  }
+  fetchRmItems() {
+    this.rmItemService.getRmItems().subscribe((items) => {
+        this.RmItems = items;
+    });
+}
+  showitemList(){
+    this.showItemList = !this.showItemList;
+  }
+  
   onDatepickerValueChange(selectedDate: string) {
     this.Date = selectedDate;
   }
+
   addRm(event: SubmitEvent) {
     event.preventDefault();
     const form = event.target as HTMLFormElement;

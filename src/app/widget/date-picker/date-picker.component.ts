@@ -56,12 +56,18 @@ export class DatePickerComponent implements OnInit {
 
   }
 
-  isToday(date: any) {
-    const today = new Date();
-    const d = new Date(this.year, this.month, date);
-    return today.toDateString() === d.toDateString() ? true : false;
+  isToday(date: number): boolean {
+    return this.datepickerValue === new Date(this.year, this.month, date).toLocaleDateString('en-US', {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    });
   }
-
+  isDateSelected(date: number): boolean {
+    return this.isToday(date);
+  }
+  
   getDateValue(date: any) {
     let selectedDate = new Date(this.year, this.month, date);
     // this.datepickerValue = selectedDate.toDateString();
@@ -96,4 +102,6 @@ export class DatePickerComponent implements OnInit {
   }
 
   trackByIdentity = (index: number, item: any) => item;
+ 
+  
 }
