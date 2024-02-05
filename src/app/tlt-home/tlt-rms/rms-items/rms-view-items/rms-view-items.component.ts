@@ -21,6 +21,5 @@ export class RmsViewItemsComponent {
     this.rmItemService.getRmItems().subscribe((items) => {
         this.rmItems = items;
     });
-}}
-
-
+}
+}

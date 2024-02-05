@@ -2,7 +2,7 @@
   <div class="p-4 sm:ml-52 mt-2 w-full ">
     @if (this.rmItems.length === 0 ) {
     <div
-      class="p-4 mt-4 border-2 border-gray-200 border-dashed rounded-lg dark:text-red-500 font-bold dark:border-gray-700 d-flex justify-content-center ">
+      class="p-4 mt-4 border-2 border-gray-200 border-dashed rounded-lg dark:text-red-500 font-bold dark:border-gray-700 flex justify-center ">
       <div>
         NO ITEMS TO DISPLAY</div>
     </div>
@@ -21,7 +21,7 @@
         </h5>
         <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
           <div class="pl-1 pb-1 ">
-            <span class="mr-4">Section: {{ rmItem.section }}</span>        
+            Section:<span class="mr-4 font-normal"> {{ rmItem.section }}</span>        
             Stock: {{ rmItem.stockAmount === 0 ? '0.00 Kg' : rmItem.stockAmount}}
           </div>
         

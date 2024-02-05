@@ -1,9 +1,9 @@
 export class RmItem{
-    public id? : string
+    public _id? : string
     public itemName! : string
     public pgNonPg! : string
     public section! : string
-    public stockAmount? : number
+    public stockAmount! : number
     public createdAt? : Date
-    public createdBy? : string 
+    public createdBy! : string 
 }

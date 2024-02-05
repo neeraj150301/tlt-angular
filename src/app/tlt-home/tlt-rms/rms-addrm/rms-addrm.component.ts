@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DatePickerComponent } from '../../../widget/date-picker/date-picker.component';
 import { RmItemService } from '../../../services/rmItem.service';
 import { RmItem } from '../../../Model/tltRmItemModel';
+import { RmService } from '../../../services/rawMaterial.service';
 
 @Component({
   selector: 'app-rms-addrm',
@@ -13,21 +14,34 @@ import { RmItem } from '../../../Model/tltRmItemModel';
 export class RmsAddrmComponent {
   showSuccessMessage: boolean = false;
   showItemList: boolean = false;
+  hideItemList: boolean = false;
   Date!: string;
-  constructor(private rmItemService: RmItemService) {}
+  selectedRmItemSection!: string;
+  selectedRmItemName!: string;
+  selectedRmItemPgNonPg!: string;
+  selectedRmItemId!: string;
+
+  constructor(private rmItemService: RmItemService,private rawMaterialService: RmService) {}
   RmItems: RmItem[] = [];
   ngOnInit() {
     this.fetchRmItems();
   }
   fetchRmItems() {
     this.rmItemService.getRmItems().subscribe((items) => {
-        this.RmItems = items;
+      this.RmItems = items;
     });
-}
-  showitemList(){
+  }
+  showitemList() {
     this.showItemList = !this.showItemList;
   }
-  
+  selectedItem(rmItem: RmItem){ 
+  this.selectedRmItemSection = rmItem.section;
+  this.selectedRmItemName = rmItem.itemName;
+  this.selectedRmItemPgNonPg = rmItem.pgNonPg;
+  this.selectedRmItemId = rmItem._id!;
+  this.showitemList();
+  this.hideItemList = true;
+  }
   onDatepickerValueChange(selectedDate: string) {
     this.Date = selectedDate;
   }
@@ -54,35 +68,35 @@ export class RmsAddrmComponent {
     const receivedPcsElement = form.elements.namedItem(
       'receivedPcs'
     ) as HTMLInputElement;
-    const receivedPcs = receivedPcsElement.value;
+    const receivedPcs = parseInt(receivedPcsElement.value);
     console.log(receivedPcs);
 
     const receivedQtyElement = form.elements.namedItem(
       'receivedQty'
     ) as HTMLInputElement;
-    const receivedQty = receivedQtyElement.value;
+    const receivedQty = parseInt(receivedQtyElement.value);
     console.log(receivedQty);
 
     const maxLenElement = form.elements.namedItem('maxLen') as HTMLInputElement;
-    const maxLen = maxLenElement.value;
+    const maxLen = parseInt(maxLenElement.value);
     console.log(maxLen);
 
     const minLenElement = form.elements.namedItem('minLen') as HTMLInputElement;
-    const minLen = minLenElement.value;
+    const minLen = parseInt(minLenElement.value);
     console.log(minLen);
 
     const avglengthElement = form.elements.namedItem(
       'avglength'
     ) as HTMLInputElement;
-    const avglength = avglengthElement.value;
+    const avglength = parseInt(avglengthElement.value);
     console.log(avglength);
 
     const lengthElement = form.elements.namedItem('length') as HTMLInputElement;
-    const length = lengthElement.value;
+    const length = parseInt(lengthElement.value);
     console.log(length);
 
     const widthElement = form.elements.namedItem('width') as HTMLInputElement;
-    const width = widthElement.value;
+    const width = parseInt(widthElement.value);
     console.log(width);
 
     const costCenterElement = form.elements.namedItem(
@@ -91,32 +105,44 @@ export class RmsAddrmComponent {
     const costCenter = costCenterElement.value;
     console.log(costCenter);
     console.log(this.Date);
+    
 
+  console.log(this.selectedRmItemSection);
+  console.log(this.selectedRmItemName);
+  console.log(this.selectedRmItemPgNonPg);
+  console.log(this.selectedRmItemId);
 
     this.showSuccessMessage = true;
     setTimeout(() => {
       this.showSuccessMessage = false;
     }, 2000);
     form.reset();
+    this.hideItemList = false;
 
     const RawMaterial = {
+      pgNonPg : this.selectedRmItemPgNonPg,
+      itemName : this.selectedRmItemName,
+      section : this.selectedRmItemSection,
+      itemId : this.selectedRmItemId,
       warehouse: warehouseName,
       documentNo: docNO,
       documentDate: this.Date,
       vendorName: vendorName,
-      receivedPiece: receivedPcs,
+      receivedPieces: receivedPcs,
       receivedQuantity: receivedQty,
+      issuedPieces:0,
+      issuedQuantity:0,
+      balancePieces:0,
+      balanceQuantity:0,
+      pendingDays:0,
       maxLength: maxLen,
       minLength: minLen,
       averageLength: avglength,
       length: length,
       width: width,
       costCenter: costCenter,
+    }; 
+    // this.rawMaterialService.createRm(RawMaterial);
 
-      //  pgNonPg : string,
-      //  itemName : string,
-      //  section : string,
-      //  itemId : string,
-    };
   }
 }

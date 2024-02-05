@@ -13,6 +13,7 @@ export class SideBarComponent {
   isRmsRouteActive: boolean = false;
   isDropdownOpen: boolean = false;
   isExpanded = signal(false);
+  isSideBarOpen: boolean = false;
 
 
   constructor(private router: Router) {}
@@ -27,5 +28,7 @@ export class SideBarComponent {
     this.isDropdownOpen = !this.isDropdownOpen;
     this.isExpanded.set(!this.isExpanded());
   }
-  
+  toogleSideBar(){
+    this.isSideBarOpen = !this.isSideBarOpen;
+  }
 }
