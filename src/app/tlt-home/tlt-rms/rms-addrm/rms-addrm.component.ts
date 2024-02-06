@@ -3,13 +3,14 @@ import { DatePickerComponent } from '../../../widget/date-picker/date-picker.com
 import { RmItemService } from '../../../services/rmItem.service';
 import { RmItem } from '../../../Model/tltRmItemModel';
 import { RmService } from '../../../services/rawMaterial.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-rms-addrm',
   standalone: true,
   templateUrl: './rms-addrm.component.html',
   styleUrl: './rms-addrm.component.css',
-  imports: [DatePickerComponent],
+  imports: [DatePickerComponent,FormsModule],
 })
 export class RmsAddrmComponent {
   showSuccessMessage: boolean = false;
@@ -20,7 +21,7 @@ export class RmsAddrmComponent {
   selectedRmItemName!: string;
   selectedRmItemPgNonPg!: string;
   selectedRmItemId!: string;
-
+  
   constructor(private rmItemService: RmItemService,private rawMaterialService: RmService) {}
   RmItems: RmItem[] = [];
   ngOnInit() {

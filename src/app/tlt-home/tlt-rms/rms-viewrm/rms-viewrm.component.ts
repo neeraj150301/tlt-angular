@@ -3,17 +3,18 @@ import { RmService } from '../../../services/rawMaterial.service';
 import { RawMaterial } from '../../../Model/tltRawMaterialModel';
 import { RmItem } from '../../../Model/tltRmItemModel';
 import { RmItemService } from '../../../services/rmItem.service';
-
+import { QRCodeModule } from 'angularx-qrcode';
+import { RouterModule } from '@angular/router';
+import { RmQrCodeComponent } from "../../../widget/rm-qr-code/rm-qr-code.component";
 @Component({
-  selector: 'app-rms-viewrm',
-  standalone: true,
-  imports: [],
-  templateUrl: './rms-viewrm.component.html',
-  styleUrl: './rms-viewrm.component.css'
+    selector: 'app-rms-viewrm',
+    standalone: true,
+    templateUrl: './rms-viewrm.component.html',
+    styleUrl: './rms-viewrm.component.css',
+    imports: [QRCodeModule, RouterModule, RmQrCodeComponent]
 })
 export class RmsViewrmComponent {
-  isexpanded = signal(false);
-  
+  expandedStates: boolean[] = [];
   // constructor(private rawMaterialService: RmService) {}
 
   rawMaterials: RawMaterial[] = [];
@@ -26,21 +27,20 @@ export class RmsViewrmComponent {
   //       this.rawMaterials = items;
   //   });
 // }
-
-constructor(private rmItemService: RmItemService) {}
-
+constructor(private rmItemService: RmItemService) {
+}
 rmItems: RmItem[] = [];
 ngOnInit() {
   this.fetchRmItems();
+  this.expandedStates = this.rmItems.map(() => false);
 }
 fetchRmItems() {
   this.rmItemService.getRmItems().subscribe((items) => {
       this.rmItems = items;
   });
 }
-isExpanded(){
- this.isexpanded.set(!this.isexpanded());
+toggleExpanded(index: number) {
+  this.expandedStates[index] = !this.expandedStates[index];
 }
-
 
 }

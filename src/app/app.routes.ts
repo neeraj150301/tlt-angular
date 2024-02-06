@@ -11,6 +11,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./tlt-home/tlt-home.component').then((m) => m.TltHomeComponent),
   },
+  // {
+  //   path: 'testingUn',
+  //   loadComponent: () =>
+  //     import('./widget/testing-unavailable/testing-unavailable.component').then((m) => m.TestingUnavailableComponent),
+  // },
   {
     path: 'admin',
     children: [
@@ -64,6 +69,15 @@ export const routes: Routes = [
           import('./tlt-home/tlt-rms/rms-viewrm/rms-viewrm.component').then(
             (m) => m.RmsViewrmComponent
           ),
+          children: [
+            {
+              path: 'rms-rmQr',
+              loadComponent: () =>
+                import('./widget/rm-qr-code/rm-qr-code.component').then(
+                  (m) => m.RmQrCodeComponent
+                ),
+            },
+          ]
       },
       {
         path: 'rms-addrm',
