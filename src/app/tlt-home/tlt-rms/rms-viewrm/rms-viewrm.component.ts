@@ -4,7 +4,7 @@ import { RawMaterial } from '../../../Model/tltRawMaterialModel';
 import { RmItem } from '../../../Model/tltRmItemModel';
 import { RmItemService } from '../../../services/rmItem.service';
 import { QRCodeModule } from 'angularx-qrcode';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { RmQrCodeComponent } from "../../../widget/rm-qr-code/rm-qr-code.component";
 @Component({
     selector: 'app-rms-viewrm',
@@ -27,7 +27,7 @@ export class RmsViewrmComponent {
   //       this.rawMaterials = items;
   //   });
 // }
-constructor(private rmItemService: RmItemService) {
+constructor(private rmItemService: RmItemService,public router: Router) {
 }
 rmItems: RmItem[] = [];
 ngOnInit() {
@@ -42,5 +42,12 @@ fetchRmItems() {
 toggleExpanded(index: number) {
   this.expandedStates[index] = !this.expandedStates[index];
 }
-
+openQrCodeDialog(itemId: string) {
+  this.router.navigate(['/rms/rms-viewrm/rms-rmQr', itemId]);
+  console.log('QR code item ID:', itemId);
+}
+showModal = false;
+  toggleModal(){
+    this.showModal = !this.showModal;
+  }
 }

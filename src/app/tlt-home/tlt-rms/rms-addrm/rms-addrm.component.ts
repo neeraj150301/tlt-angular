@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   templateUrl: './rms-addrm.component.html',
   styleUrl: './rms-addrm.component.css',
-  imports: [DatePickerComponent,FormsModule],
+  imports: [DatePickerComponent,],
 })
 export class RmsAddrmComponent {
   showSuccessMessage: boolean = false;
