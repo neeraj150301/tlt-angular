@@ -9,10 +9,10 @@
     }
     @else{
     @for (rmItem of rmItems; track $index;)
-    {<div>
-    <div (click)="toggleExpanded($index)"
+    {
+    <div
       class="relative flex flex-col mt-4 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-full border-2 border-gray-200 border-solid">
-      <div class="pt-2 pl-4">
+      <div (click)="toggleExpanded($index)" class="pt-2 pl-4">
         <h5
           class="block mb-1 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
           <span class="font-bold text-red-600">
@@ -33,74 +33,78 @@
           |<span class="ml-4">ItemName: {{ rmItem._id}}</span>
         </div>
       </div>
-        @if (expandedStates[$index]) {
-        <div class=" pb-1 ">
-          <span class="mr-4">Warehouse: {{ rmItem.stockAmount }} </span>
-          |<span class="ml-4">ItemName: {{ rmItem._id}}</span>
-        </div>
-        <a (click)="toggleModal()"
-          class="group relative inline-flex items-center overflow-hidden rounded-xl mb-3 bg-red-500 px-8 py-3 text-white focus:outline-none focus:ring active:bg-red-800">
-          <span class="absolute -start-full transition-all group-hover:start-4">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6 rtl:rotate-180">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5Zm-3 0h.008v.008H15V10.5Z" />
-            </svg>
+      @if (expandedStates[$index]) {
+      <div class=" pb-1 ml-4">
+        <span class="mr-4">Warehouse: {{ rmItem.stockAmount }} </span>
+        |<span class="ml-4">ItemName: {{ rmItem._id}}</span>
+      </div>
+      <div class="flex justify-center">
+        <a class="group my-3 ml-4 w-36 flex items-center justify-between gap-2 rounded-lg border border-red-500 bg-red-500 px-2 py-1 transition-colors hover:bg-transparent focus:outline-none focus:ring"
+        (click)="toggleModal()">
+        <span class="font-medium text-white transition-colors group-hover:text-red-600 group-active:text-red-500">
+          QR Code
+        </span>
 
-          </span>
+        <span class="shrink-0 rounded-full border border-current bg-white p-1 text-red-600 group-active:text-red-500">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5Z" />
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M6.75 6.75h.75v.75h-.75v-.75ZM6.75 16.5h.75v.75h-.75v-.75ZM16.5 6.75h.75v.75h-.75v-.75ZM13.5 13.5h.75v.75h-.75v-.75ZM13.5 19.5h.75v.75h-.75v-.75ZM19.5 13.5h.75v.75h-.75v-.75ZM19.5 19.5h.75v.75h-.75v-.75ZM16.5 16.5h.75v.75h-.75v-.75Z" />
+          </svg>
 
-          <span class="text-sm font-medium transition-all group-hover:ms-4"> Print </span>
-        </a>
-        @if (showModal) {
-        <div
-          class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
-          <div class="relative w-auto my-6 mx-auto max-w-6xl">
-            <div
-              class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-              <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-                <h3 class="text-3xl font-semibold">
-                  QR CODE
-                </h3>
-                <!-- <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" (click)="toggleModal()">
+        </span>
+      </a>
+    </div>
+      @if (showModal) {
+      <div
+        class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+        <div class="relative w-auto my-6 mx-auto max-w-6xl">
+          <div
+            class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+            <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+              <h3 class="text-3xl font-semibold">
+                QR CODE
+              </h3>
+              <!-- <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" (click)="toggleModal()">
             <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
               o
             </span>
           </button> -->
-              </div>
-              <div class="relative p-6 flex-auto">
-                <p class="my-4 text-blueGray-500 text-lg leading-relaxed">
-                  <qrcode [qrdata]="rmItem._id!" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
-                </p>
-              </div>
-              <!--footer-->
-              <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-                <button
-                  class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  type="button" (click)="toggleModal()">
-                  Close
-                </button>
-                <button
-                  class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  type="button" (click)="toggleModal()">
-                  Download
-                </button>
-              </div>
+            </div>
+            <div  class="relative mr-6 p-6 flex flex-row">
+              <p class="my-4 text-blueGray-500 text-lg leading-relaxed">
+                <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="rmItem._id!" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+              </p><div class="flex flex-col"><span class="mt-10 text-4xl text-black">
+              RR Ispat</span>
+              <span>TLT Raw Material </span><span> {{ rmItem.section }}</span><span> {{ rmItem.pgNonPg }}</span>
+              <span> Received Pcs.: {{ rmItem.stockAmount }}</span>
+              <span> Received Qty.: {{ rmItem.stockAmount }}</span></div>
+            </div>
+            <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+              <button
+                class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                type="button" (click)="toggleModal()">
+                Close
+              </button>
+              <a [href]="qrCodeDownloadLink" download="qrcode"
+                class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                >
+                Print
+            </a>
             </div>
           </div>
         </div>
-        @if (showModal) {
-        <div class="opacity-25 fixed inset-0 z-40 bg-black"></div>}
-        }
-        }
       </div>
+      @if (showModal) {
+      <div class="opacity-25 fixed inset-0 z-40 bg-black">
+      </div>
+      }
+      }
+      }
     </div>
-    <!-- when i click the print button the qr data should be of the  -->
     }}
   </div>
 </div>
-<!-- 
-<app-rm-qr-code>
-</app-rm-qr-code>
-        <qrcode [qrdata]="'Your data string'" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
-npm install ngx-qrcode2 --save
-routerLink="/rms/rms-viewrm/rms-rmQr" -->
+<!-- (click)="togglePrint()" -->

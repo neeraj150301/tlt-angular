@@ -6,6 +6,7 @@ import { RmItemService } from '../../../services/rmItem.service';
 import { QRCodeModule } from 'angularx-qrcode';
 import { Router, RouterModule } from '@angular/router';
 import { RmQrCodeComponent } from "../../../widget/rm-qr-code/rm-qr-code.component";
+import { SafeUrl } from '@angular/platform-browser';
 @Component({
     selector: 'app-rms-viewrm',
     standalone: true,
@@ -15,6 +16,8 @@ import { RmQrCodeComponent } from "../../../widget/rm-qr-code/rm-qr-code.compone
 })
 export class RmsViewrmComponent {
   expandedStates: boolean[] = [];
+  showModal = false;
+  public qrCodeDownloadLink: SafeUrl = "";
   // constructor(private rawMaterialService: RmService) {}
 
   rawMaterials: RawMaterial[] = [];
@@ -42,12 +45,14 @@ fetchRmItems() {
 toggleExpanded(index: number) {
   this.expandedStates[index] = !this.expandedStates[index];
 }
-openQrCodeDialog(itemId: string) {
-  this.router.navigate(['/rms/rms-viewrm/rms-rmQr', itemId]);
-  console.log('QR code item ID:', itemId);
-}
-showModal = false;
+
   toggleModal(){
     this.showModal = !this.showModal;
+  }
+  togglePrint() {
+    window.print();
+  }
+  onChangeURL(url: SafeUrl) {
+    this.qrCodeDownloadLink = url;
   }
 }
