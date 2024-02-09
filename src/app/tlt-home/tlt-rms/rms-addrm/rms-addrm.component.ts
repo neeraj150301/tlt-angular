@@ -142,8 +142,11 @@ export class RmsAddrmComponent {
       length: length,
       width: width,
       costCenter: costCenter,
+      balanceAmount:0,
+      unit: '',
+      createdBy: '',
     }; 
-    // this.rawMaterialService.createRm(RawMaterial);
+    this.rawMaterialService.createRm(RawMaterial);
 
   }
 }

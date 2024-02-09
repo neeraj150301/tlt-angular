@@ -19,15 +19,12 @@ export class RmsAddItemsComponent {
     const form = event.target as HTMLFormElement;
     const itemNameElement = form.elements.namedItem('itemname') as HTMLInputElement;
     const ItemName = itemNameElement.value;
-    console.log(ItemName)
     
     const pgnonpgElement = form.elements.namedItem('pgnonpg') as HTMLInputElement;
     const pgnonpg = pgnonpgElement.value;
-    console.log(pgnonpg)
     
     const sectionElement = form.elements.namedItem('section') as HTMLInputElement;
     const section = sectionElement.value;
-    console.log(section)
     
     this.showSuccessMessage = true;
     setTimeout(() => {

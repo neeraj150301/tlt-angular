@@ -5,54 +5,52 @@ import { RmItem } from '../../../Model/tltRmItemModel';
 import { RmItemService } from '../../../services/rmItem.service';
 import { QRCodeModule } from 'angularx-qrcode';
 import { Router, RouterModule } from '@angular/router';
-import { RmQrCodeComponent } from "../../../widget/rm-qr-code/rm-qr-code.component";
+import { RmQrCodeComponent } from '../../../widget/rm-qr-code/rm-qr-code.component';
 import { SafeUrl } from '@angular/platform-browser';
 @Component({
-    selector: 'app-rms-viewrm',
-    standalone: true,
-    templateUrl: './rms-viewrm.component.html',
-    styleUrl: './rms-viewrm.component.css',
-    imports: [QRCodeModule, RouterModule, RmQrCodeComponent]
+  selector: 'app-rms-viewrm',
+  standalone: true,
+  templateUrl: './rms-viewrm.component.html',
+  styleUrl: './rms-viewrm.component.css',
+  imports: [QRCodeModule, RouterModule, RmQrCodeComponent],
 })
 export class RmsViewrmComponent {
+
   expandedStates: boolean[] = [];
   showModal = false;
-  public qrCodeDownloadLink: SafeUrl = "";
-  // constructor(private rawMaterialService: RmService) {}
+  public qrCodeDownloadLink: SafeUrl = '';
+  constructor(private rawMaterialService: RmService, public router: Router) {}
 
   rawMaterials: RawMaterial[] = [];
 
-  // ngOnInit() {
-    // this.fetchRm();
-  // }
-  // fetchRm() {
-  //   this.rawMaterialService.getRm().subscribe((items) => {
-  //       this.rawMaterials = items;
-  //   });
-// }
-constructor(private rmItemService: RmItemService,public router: Router) {
-}
-rmItems: RmItem[] = [];
-ngOnInit() {
-  this.fetchRmItems();
-  this.expandedStates = this.rmItems.map(() => false);
-}
-fetchRmItems() {
-  this.rmItemService.getRmItems().subscribe((items) => {
-      this.rmItems = items;
-  });
-}
-toggleExpanded(index: number) {
-  this.expandedStates[index] = !this.expandedStates[index];
-}
-
-  toggleModal(){
+  ngOnInit() {
+    this.fetchRm();
+    this.expandedStates = this.rawMaterials.map(() => false);
+  }
+  fetchRm() {
+    this.rawMaterialService.getRm().subscribe((items) => {
+      this.rawMaterials = items;
+    });
+  }
+  formatDate(dateString: string | Date) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US',{
+      weekday: 'short',
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    });
+  }
+  toggleExpanded(index: number) {
+    this.expandedStates[index] = !this.expandedStates[index];
+  }
+  toggleModal() {
     this.showModal = !this.showModal;
   }
-  togglePrint() {
-    window.print();
-  }
+  
   onChangeURL(url: SafeUrl) {
     this.qrCodeDownloadLink = url;
   }
+  
+  
 }

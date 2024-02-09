@@ -13,7 +13,7 @@ export class RmService{
     createRm(data: RawMaterial) {
         this.http
           .post(
-            `${environment.apiBaseUrl}/`,
+            `${environment.apiBaseUrl}/tlt-rms`,
             data
           )
           .subscribe((res) => {
@@ -22,6 +22,6 @@ export class RmService{
           this.getRm();
       }
       getRm() {
-        return this.http.get<any>(`${environment.apiBaseUrl}/`);
+        return this.http.get<any>(`${environment.apiBaseUrl}/tlt-rms`);
     }
 }

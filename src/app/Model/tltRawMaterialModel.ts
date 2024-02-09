@@ -24,5 +24,5 @@ export class RawMaterial{
     public width! : number
     public costCenter! : string
     public createdAt? : Date
-    public createdBy? : string 
+    public createdBy! : string 
 }
