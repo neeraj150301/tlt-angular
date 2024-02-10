@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable, inject } from "@angular/core";
+import { Injectable, inject, signal } from "@angular/core";
 import { environment } from "../environment";
 import { RawMaterial } from "../Model/tltRawMaterialModel";
 
@@ -9,6 +9,7 @@ import { RawMaterial } from "../Model/tltRawMaterialModel";
 
 export class RmService{
     http = inject(HttpClient);
+    public rawmaterial = signal(RawMaterial);
 
     createRm(data: RawMaterial) {
         this.http

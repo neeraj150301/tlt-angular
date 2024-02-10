@@ -1,18 +1,19 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RmService } from '../../../services/rawMaterial.service';
 import { RawMaterial } from '../../../Model/tltRawMaterialModel';
-import { RmItem } from '../../../Model/tltRmItemModel';
-import { RmItemService } from '../../../services/rmItem.service';
 import { QRCodeModule } from 'angularx-qrcode';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { RmQrCodeComponent } from '../../../widget/rm-qr-code/rm-qr-code.component';
 import { SafeUrl } from '@angular/platform-browser';
+import html2canvas from 'html2canvas';
+import jspdf from 'jspdf';
+
 @Component({
   selector: 'app-rms-viewrm',
   standalone: true,
   templateUrl: './rms-viewrm.component.html',
   styleUrl: './rms-viewrm.component.css',
-  imports: [QRCodeModule, RouterModule, RmQrCodeComponent],
+  imports: [RouterLink,QRCodeModule, RouterModule, RmQrCodeComponent],
 })
 export class RmsViewrmComponent {
 
@@ -41,16 +42,33 @@ export class RmsViewrmComponent {
       year: 'numeric'
     });
   }
+
   toggleExpanded(index: number) {
+    this.expandedStates = this.rawMaterials.map(() => false);
     this.expandedStates[index] = !this.expandedStates[index];
   }
-  toggleModal() {
+
+  showQR() {
     this.showModal = !this.showModal;
+    
+    // this.rawMaterialService.rawmaterial.set(rawMaterial);
+    // this.router.navigate(['./rms/rms-qr']);
   }
   
   onChangeURL(url: SafeUrl) {
     this.qrCodeDownloadLink = url;
   }
-  
-  
+  printQR(divId:string)
+    {
+        let data = document.getElementById(divId);  
+        html2canvas(data!).then(canvas => {
+        const contentDataURL = canvas.toDataURL('image/png')  // 'image/jpeg' for lower quality output.
+        let pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
+        pdf.addImage(contentDataURL, 'PNG', 0, 0, 29.7, 21.0);  
+        // pdf.save('Filename.pdf');  
+        
+        pdf.autoPrint();
+        window.open(pdf.output('bloburl'));
+      }); 
+    }
 }

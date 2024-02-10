@@ -65,7 +65,9 @@
       </div>
       <div class="flex justify-center">
         <a class="group mt-1 mb-2 ml-4 w-36 flex items-center justify-between gap-2 rounded-lg border border-red-500 bg-red-500 px-2 py-1 transition-colors hover:bg-transparent focus:outline-none focus:ring"
-          (click)="toggleModal()">
+          
+        (click)="showQR()"
+          >
           <span class="font-medium text-white transition-colors group-hover:text-red-600 group-active:text-red-500">
             QR Code
           </span>
@@ -82,7 +84,7 @@
           </span>
         </a>
       </div>
-      @if (showModal) {
+       @if (showModal) { 
       <div
         class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
         <div class="relative w-auto my-6 mx-auto max-w-6xl">
@@ -93,27 +95,27 @@
                 QR CODE
               </h3>
             </div>
-            <div class="relative mr-6 p-6 flex flex-row">
+            <div id="MyDIv"  class="relative mr-6 p-6 flex flex-row">
               <p class="my-4 text-blueGray-500 text-lg leading-relaxed">
-                <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="rawMaterial._id!" [width]="256"
+                <qrcode [qrdata]="rawMaterial._id!" [width]="256"
                   [errorCorrectionLevel]="'M'"></qrcode>
               </p>
-              <div class="flex flex-col"><span class="mt-10 text-4xl text-black">
-                  RR Ispat</span>
-                <span>TLT Raw Material </span><span> {{ rawMaterial.section }}</span><span> {{ rawMaterial.pgNonPg
+              <div class="mt-7 flex flex-col"><span class=" text-4xl text-black font-semibold">
+                  RR ISPAT</span>
+                <span class="text-black font-bold">TLT Raw Material </span><span class="text-black font-bold"> {{ rawMaterial.section }}</span><span class="text-black font-bold"> {{ rawMaterial.pgNonPg === 'pg' ? 'PG' : 'NON PG'
                   }}</span>
-                <span> Received Pcs.: <div>{{ rawMaterial.receivedPieces }}</div></span>
-                <span> Received Qty.: <div>{{ rawMaterial.receivedQuantity > 999 ? (rawMaterial.receivedQuantity / 1000).toFixed(2)
+                <span class="text-black font-semibold"> Received Pcs.: <div class="text-black font-bold">{{ rawMaterial.receivedPieces }}</div></span>
+                <span class="text-black font-semibold"> Received Qty.: <div class="text-black font-bold">{{ rawMaterial.receivedQuantity > 999 ? (rawMaterial.receivedQuantity / 1000).toFixed(2)
                   + ' MT' : (rawMaterial.receivedQuantity === 0 ? '0.00 Kg' : rawMaterial.receivedQuantity + ' Kg')}}</div></span>
               </div>
             </div>
             <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
               <button
                 class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button" (click)="toggleModal()">
+                type="button" (click)="showQR()">
                 Close
               </button>
-              <a [href]="qrCodeDownloadLink" download="qrcode"
+              <a title="Print QR Code" (click)="printQR('MyDIv');"
                 class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                 Print
               </a>
@@ -124,14 +126,11 @@
       @if (showModal) {
       <div class="opacity-25 fixed inset-0 z-40 bg-black">
       </div>
-      }
+      } 
       }
       }
     </div>
-    }}
+    }
+  }
   </div>
 </div>
-<!-- <a [href]="qrCodeDownloadLink" download="qrcode"
-class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
-Print
-</a> -->
