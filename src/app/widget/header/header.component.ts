@@ -24,4 +24,9 @@ export class HeaderComponent {
   toggleNavbar() {
     this.isNavbarOpen = !this.isNavbarOpen;
   }
+  QRscanner() {
+    
+    // this.rawMaterialService.rawmaterial.set(rawMaterial);
+    this.router.navigate(['./rms/rms-qr']);
+  }
 }

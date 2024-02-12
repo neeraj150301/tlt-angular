@@ -33,7 +33,7 @@ export class RmsViewrmComponent {
       this.rawMaterials = items;
     });
   }
-  formatDate(dateString: string | Date) {
+  formatDate(dateString: string ) {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US',{
       weekday: 'short',
