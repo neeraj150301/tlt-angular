@@ -7,6 +7,7 @@ import { QRCodeModule } from 'angularx-qrcode';
 // import { ScanFolioCitaComponent } from './scan-folio-cita/scan-folio-cita.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { Result } from '@zxing/library';
+import { RawMaterial } from '../../../Model/tltRawMaterialModel';
 
 
 
@@ -21,27 +22,21 @@ export class RmsQrComponent {
 
   constructor( public router: Router,public rmService: RmService) {}
   scanResult: string = '';
+  scannerView : boolean = true;
+  itemView : boolean = false;
+  scannedRm! : RawMaterial;
   ngOnInit(): void {
-    // Retrieve rawMaterial 
-    // this.rawMaterial = this.rmService.rawmaterial();
     
     }
-    // printQR(divId:string)
-    // {
-    //     let data = document.getElementById(divId);  
-    //     html2canvas(data!).then(canvas => {
-    //     const contentDataURL = canvas.toDataURL('image/png')  // 'image/jpeg' for lower quality output.
-    //     let pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
-    //     pdf.addImage(contentDataURL, 'PNG', 0, 0, 29.7, 21.0);  
-    //     // pdf.save('Filename.pdf');  
-        
-    //     pdf.autoPrint();
-    //     window.open(pdf.output('bloburl'), '_blank');
-    //   }); 
-    // }
+    
     onCodeResult(result: string) {
       this.scanResult = result;
-      }
+      this.scannerView = false;
+      this.itemView = true;
+      this.rmService.getSingleRm(result).subscribe((res) => {
+        console.log('Item details:', res);
+        
+        this.scannedRm = res;
+      });
+    }
   }
-
- 

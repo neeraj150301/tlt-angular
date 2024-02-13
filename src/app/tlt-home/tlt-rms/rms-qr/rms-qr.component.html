@@ -1,77 +1,14 @@
 <div class="flex justify-center items-center h-screen ">
-  <p>scanner page
-    <zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner>
-  </p>
+  <p>scanner page</p>
+  @if (scannerView) {  
+  <zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+  }
+  @if (itemView) {
   <p>
-    scan result :  {{scanResult}}
+    scan result :  {{scannedRm.documentNo}}
+    REceived quantity :  {{scannedRm.receivedQuantity}}
+
   </p>
-    <!-- <div class="relative w-auto my-6 mx-auto max-w-6xl">
-        <div
-            class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-            <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-                <h3 class="text-3xl font-semibold">
-                    QR CODE
-                </h3>
-            </div>
-            <div id="MyDIv" style="margin-left: 45px;" class="main-container">
-                <div class="relative mr-6 p-6 flex flex-row">
-                    <p class="my-4 text-blueGray-500 text-lg leading-relaxed">
-                        <qrcode [qrdata]="rawMaterial._id!" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
-                    </p>
-                    <div class="flex flex-col"><span class="mt-10 text-4xl text-black">
-                            RR Ispat</span>
-                        <span>TLT Raw Material </span><span> {{ rawMaterial.section }}</span><span> {{
-                            rawMaterial.pgNonPg
-                            }}</span>
-                        <span> Received Pcs.: <div>{{ rawMaterial.receivedPieces }}</div></span>
-                        <span> Received Qty.: <div>{{ rawMaterial.receivedQuantity > 999 ? (rawMaterial.receivedQuantity
-                                / 1000).toFixed(2)
-                                + ' MT' : (rawMaterial.receivedQuantity === 0 ? '0.00 Kg' : rawMaterial.receivedQuantity
-                                + ' Kg')}}</div></span>
-                    </div>
-                </div>
-            </div>
-            <div title="Print QR Code" (click)="printQR('MyDIv');"
-                class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
-                Print</div>
-        </div>
-    </div> -->
+}
+    
 </div>
-<!-- <div
-        class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex  h-screen">
-        <div class="relative w-auto my-6 mx-auto max-w-6xl">
-          <div
-            class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-            <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-              <h3 class="text-3xl font-semibold">
-                QR CODE
-              </h3>
-            </div>
-            <div class="relative mr-6 p-6 flex flex-row">
-              <p class="my-4 text-blueGray-500 text-lg leading-relaxed">
-                <qrcode [qrdata]="rawMaterial._id!" [width]="256"
-                  [errorCorrectionLevel]="'M'"></qrcode>
-              </p>
-              <div class="flex flex-col"><span class="mt-10 text-4xl text-black">
-                  RR Ispat</span>
-                <span>TLT Raw Material </span><span> {{ rawMaterial.section }}</span><span> {{ rawMaterial.pgNonPg
-                  }}</span>
-                <span> Received Pcs.: <div>{{ rawMaterial.receivedPieces }}</div></span>
-                <span> Received Qty.: <div>{{ rawMaterial.receivedQuantity > 999 ? (rawMaterial.receivedQuantity / 1000).toFixed(2)
-                  + ' MT' : (rawMaterial.receivedQuantity === 0 ? '0.00 Kg' : rawMaterial.receivedQuantity + ' Kg')}}</div></span>
-              </div>
-            </div>
-            <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-              <button
-                class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button" >
-                Close
-              </button>
-              <a (click)="exportAsPDF('MyDIv');"
-                class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
-                Print
-              </a>
-            </div>
-          </div>
-        </div>
-      </div> -->

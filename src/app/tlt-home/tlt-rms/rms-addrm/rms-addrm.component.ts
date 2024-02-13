@@ -4,13 +4,14 @@ import { RmItemService } from '../../../services/rmItem.service';
 import { RmItem } from '../../../Model/tltRmItemModel';
 import { RmService } from '../../../services/rawMaterial.service';
 import { FormsModule } from '@angular/forms';
+import { SearchBarComponent } from "../../../widget/search-bar/search-bar.component";
 
 @Component({
-  selector: 'app-rms-addrm',
-  standalone: true,
-  templateUrl: './rms-addrm.component.html',
-  styleUrl: './rms-addrm.component.css',
-  imports: [DatePickerComponent,],
+    selector: 'app-rms-addrm',
+    standalone: true,
+    templateUrl: './rms-addrm.component.html',
+    styleUrl: './rms-addrm.component.css',
+    imports: [DatePickerComponent, SearchBarComponent]
 })
 export class RmsAddrmComponent {
   showSuccessMessage: boolean = false;
@@ -31,6 +32,16 @@ export class RmsAddrmComponent {
     this.rmItemService.getRmItems().subscribe((items) => {
       this.RmItems = items;
     });
+  }
+  
+  onSearch(query: string): void {
+    if (query.trim() === '') {
+      this.RmItems = [...this.RmItems]; 
+    } else {
+      this.RmItems = this.RmItems.filter(items =>
+        items.itemName.toLowerCase().includes(query.toLowerCase())
+      );
+      }
   }
   showitemList() {
     this.showItemList = !this.showItemList;

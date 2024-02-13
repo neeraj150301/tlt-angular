@@ -38,6 +38,7 @@ export class DatePickerComponent implements OnInit {
     this.initDate();
     this.getNoOfDays();
   }
+  
   initDate() {
     let today = new Date();
     this.month = today.getMonth();

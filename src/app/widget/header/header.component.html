@@ -1,8 +1,8 @@
 <nav
-  class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600 h-14">
+  class="bg-gray-900 dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600 h-14">
   <div class=" flex flex-wrap items-center justify-between mx-auto p-2">
-    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-red-500 pl-4">RR
-      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">ISPAT</span>
+    <span class="self-center text-2xl font-semibold whitespace-nowrap text-red-500 dark:text-red-500 pl-4">RR
+      <span class="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-white">ISPAT</span>
     </span>
     <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
       <button (click)="QRscanner()" type="button"
@@ -33,17 +33,18 @@
 
     <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
       <ul
-        class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-700 rounded-lg bg-gray-800 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-gray-900 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
         <li>
           <a routerLink="/admin/admin-dash" 
              [class.underline]="isAdminRouteActive" 
              [class.underline-offset-2]="isAdminRouteActive" 
              [class.dark:text-white]="isAdminRouteActive"
+             [class.:text-white]="isAdminRouteActive"
              class="hover:underline hover:underline-offset-4 text-blue-700 text-xl">Admin</a>
       </li>
       
         <li>
-          <a routerLink="/rms" routerLinkActive="underline underline-offset-2 dark:text-white"
+          <a routerLink="/rms" routerLinkActive="underline underline-offset-2 text-white dark:text-white"
             class="hover:underline hover:underline-offset-4 text-blue-700 text-xl" 
             >Raw Material Supervisor</a>
         </li>

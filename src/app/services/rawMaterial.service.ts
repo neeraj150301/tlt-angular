@@ -25,4 +25,7 @@ export class RmService{
       getRm() {
         return this.http.get<any>(`${environment.apiBaseUrl}/tlt-rms`);
     }
+    getSingleRm(id : string){
+      return this.http.get<any>(`${environment.apiBaseUrl}/tlt-rms/${id}`)
+    }
 }

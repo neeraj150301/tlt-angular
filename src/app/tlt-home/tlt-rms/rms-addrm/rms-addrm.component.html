@@ -46,6 +46,7 @@
 @else{
           <div class="rmsItemsContainer overflow-y-auto" style="max-height: 300px;">
             <!-- <input type="text" placeholder="Search by item name..."  class="w-full p-2 mb-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"> -->
+            <!-- <app-search-bar (search)="onSearch($event)"></app-search-bar> -->
             @for (rmItem of RmItems; track $index; )
             {
             <div
