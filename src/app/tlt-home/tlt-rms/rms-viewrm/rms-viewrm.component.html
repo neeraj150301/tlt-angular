@@ -54,7 +54,8 @@
             Received Qty.: {{ rawMaterial.receivedQuantity > 999 ? (rawMaterial.receivedQuantity / 1000).toFixed(2)
             + ' MT' : (rawMaterial.receivedQuantity === 0 ? '0.00 Kg' : rawMaterial.receivedQuantity + ' Kg')}}<br>
             Issued Qty.: {{ rawMaterial.issuedQuantity }}<br>
-            Balance Qty.: {{ rawMaterial.balanceQuantity }}<br>
+            Balance Qty.: {{ rawMaterial.balanceQuantity! > 999 ? (rawMaterial.balanceQuantity! / 1000).toFixed(2)
+              + ' MT' : (rawMaterial.balanceQuantity === 0 ? '0.00 Kg' : rawMaterial.balanceQuantity + ' Kg')}}<br>
             Max Length: {{ rawMaterial.maxLength}}<br>
             Pending Days: {{ rawMaterial.pendingDays}}<br>
             Width: {{ rawMaterial.width}}

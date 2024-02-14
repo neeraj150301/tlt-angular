@@ -144,8 +144,9 @@ export class RmsAddrmComponent {
       receivedQuantity: receivedQty,
       issuedPieces:0,
       issuedQuantity:0,
-      balancePieces:0,
-      balanceQuantity:0,
+      balancePieces:receivedPcs,
+      balanceQuantity:receivedQty,
+      
       pendingDays:0,
       maxLength: maxLen,
       minLength: minLen,

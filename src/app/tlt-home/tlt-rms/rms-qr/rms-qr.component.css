@@ -1,0 +1,15 @@
+
+.circle {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgb(216, 65, 65); /* Adjust color as needed */
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    margin-right: 10px; /* Adjust spacing */
+  }
+  .pg-non-pg {
+      font-size: 14px; /* Adjust the font size as needed */
+    }

@@ -1,14 +1,105 @@
-<div class="flex justify-center items-center h-screen ">
-  <p>scanner page</p>
+<div class="flex justify-center h-screen ">
+    <div class="p-4 sm:ml-52 mt-6 w-full ">
+  <div>
   @if (scannerView) {  
   <zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner>
   }
   @if (itemView) {
-  <p>
-    scan result :  {{scannedRm.documentNo}}
-    REceived quantity :  {{scannedRm.receivedQuantity}}
+   
+    <div
+    class="relative flex flex-col mt-4 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-full border-2 border-gray-200 border-solid">
+    <div  class="pt-2 pl-4">
+      <h5
+        class="mb-1 flex items-center font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+        <span class="circle pg-non-pg">
+          {{ scannedRm.pgNonPg === 'nonPg' ? 'NPG' : scannedRm.pgNonPg.toUpperCase() }}</span>
+        <span class="font-bold text-red-600 ">
+          {{ scannedRm.documentNo }} </span>
+      </h5>
+      <div class="flex justify-between items-center font-semibold">
+        Document Date: {{ formatDate(scannedRm.documentDate) }}
+        
+      </div>
+      <p class="block font-sans text-base antialiased font-light 
+       text-inherit">
+      <div class=" pb-1 font-semibold">
+        <span class="mr-4">Warehouse: {{ scannedRm.warehouse === 'pgTltRMSteel' ? 'PG-TLT(RM STEEL)' : 'TLT(RM STEEL)' }} </span>
+        |<span class="ml-4">Item Name: {{ scannedRm.itemName}}</span>
+      </div>
+    </div>
+    <div class=" pb-1 ml-4 ">
+      <div class=" pb-1 font-semibold">
+        <span class="mr-4">Vendor: {{ scannedRm.vendorName }} </span>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:gap-14">
+        <div class="mx-4">
+          Received Pcs.: {{ scannedRm.receivedPieces}}<br>
+          Issued Pcs.: {{ scannedRm.issuedPieces}}<br>
+          Balance Pcs.: {{ scannedRm.balancePieces}}<br>
+          Min Length: {{ scannedRm.minLength }}<br>
+          Average Length: {{ scannedRm.averageLength }}<br>
+          Length: {{ scannedRm.length}}
+        </div>
+        <div class="hidden sm:block">
+          -<br>-<br>-<br>-<br>-<br>-<br>
+        </div>
+        <div class="mx-4">
+          Received Qty.: {{ scannedRm.receivedQuantity > 999 ? (scannedRm.receivedQuantity / 1000).toFixed(2)
+          + ' MT' : (scannedRm.receivedQuantity === 0 ? '0.00 Kg' : scannedRm.receivedQuantity + ' Kg')}}<br>
+          Issued Qty.: {{ scannedRm.issuedQuantity }}<br>
+          Balance Qty.: {{ scannedRm.balanceQuantity! > 999 ? (scannedRm.balanceQuantity! / 1000).toFixed(2)
+            + ' MT' : (scannedRm.balanceQuantity === 0 ? '0.00 Kg' : scannedRm.balanceQuantity + ' Kg')}}<br>
+          Max Length: {{ scannedRm.maxLength}}<br>
+          Pending Days: {{ scannedRm.pendingDays}}<br>
+          Width: {{ scannedRm.width}}
+        </div>
+      </div>
+      <div class="my-1 font-semibold"><span class="pt-1">Cost Center: {{ scannedRm.costCenter}}</span></div>
 
-  </p>
+    </div>
+    @if (issueButton) {
+    <div class="flex justify-center">
+      <a class="group mt-1 mb-2 ml-4 w-36 flex items-center justify-between gap-2 rounded-lg border border-red-500 bg-red-500 px-2 py-1 transition-colors hover:bg-transparent focus:outline-none focus:ring"
+        
+      (click)="showIssueRmForm()"
+        >
+        <span class="font-medium text-white transition-colors group-hover:text-red-600 group-active:text-red-500">
+          Issue ?
+        </span>
+
+        <span class="shrink-0 rounded-full border border-current bg-white p-1 text-red-600 group-active:text-red-500">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+            <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z" clip-rule="evenodd" />
+          </svg>
+          
+
+        </span>
+      </a>
+    </div>
+  }
+@if (issueForm) {
+  <form #form="ngForm" (submit)="issueRM($event)">
+  
+
+    <div class="px-5 mb-4 mt-4">
+      <label for="issuePcs" class="block mb-2 text-sm font-medium text-white dark:text-gray-800">No. of Pcs to issue</label>
+      <input minlength="1" name="issuePcs" type="number" id="issuePcs"
+        class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+        placeholder="Enter Pcs Number" required>
+    </div>
+    <div class="flex justify-center p-3 ">
+      <button type="submit"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">Submit</button>
+      </div>
+
+</form>
 }
-    
+
+  </div>
+
+
+  }
+
 </div>
+
+      
