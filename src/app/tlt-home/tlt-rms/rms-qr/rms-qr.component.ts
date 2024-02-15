@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { RmService } from '../../../services/rawMaterial.service';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { RawMaterial } from '../../../Model/tltRawMaterialModel';
-import { FormsModule, NgForm} from '@angular/forms';
+import { FormsModule, } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-rms-qr',
   standalone: true,
-  imports: [ZXingScannerModule,FormsModule],
+  imports: [ZXingScannerModule,FormsModule,CommonModule],
   templateUrl: './rms-qr.component.html',
   styleUrl: './rms-qr.component.css',
 })
@@ -18,7 +19,14 @@ export class RmsQrComponent {
   issueForm: boolean = false;
   itemView: boolean = false;
   scannedRm!: RawMaterial;
-  issuedPcs: number =0;
+  issuePcsEntered: number = 0;
+  balPcsEntered : number = 0;
+  perPcWt : number = 0;
+  issuedQty : number = 0;
+  issuedPcs : number = 0;
+  balQty : number = 0;
+  balPcs : number = 0;
+  errorr: boolean = false;
 
   constructor(public router: Router, public rmService: RmService) {}
   ngOnInit(): void {}
@@ -26,16 +34,38 @@ export class RmsQrComponent {
   issueRM(event: SubmitEvent) {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
-
-    const pcs = form.elements.namedItem(
-      'issuePcs'
-    ) as HTMLInputElement;
+    const pcs = form.elements.namedItem('issuePcsEntered') as HTMLInputElement;
     const pcss = pcs.value;
-    console.log(pcss);
-    this.issuedPcs = pcss;
+    console.log('pcs:',pcss);
+    this.issuePcsEntered = parseInt(pcss);
+    console.log('bal:',this.balPcsEntered);
+    console.log('issuePcs:',this.issuePcsEntered);
+
+    if (this.issuePcsEntered > this.balPcsEntered) {
+      console.log('Error: Issue quantity cannot exceed balance quantity.');
+      this.errorr = true;
+      return;
+    }
+this.perPcWt = this.scannedRm.receivedQuantity / this.scannedRm.receivedPieces;
+this.issuedQty = this.perPcWt * this.issuePcsEntered;
+this.issuedPcs = this.scannedRm.issuedPieces! + this.issuePcsEntered;
+this.balQty = this.scannedRm.balanceQuantity! - this.perPcWt * this.issuePcsEntered;
+this.balPcs = this.scannedRm.balancePieces! - this.issuePcsEntered;
+console.log('perPcWt:',this.perPcWt);
+console.log('issuedQty:',this.issuedQty);
+console.log('issuedPcs:',this.issuedPcs);
+console.log('balQty:',this.balQty);
+
+console.log('balPcs:',this.balPcs);
+this.scannedRm.issuedQuantity = this.issuedQty;
+this.scannedRm.issuedPieces = this.issuedPcs;
+this.scannedRm.balanceQuantity = this.balQty;
+this.scannedRm.balancePieces = this.balPcs;
+
+this.rmService.issueRm(this.scannedRm);
+
 
   }
-  
 
   showIssueRmForm() {
     this.issueButton = false;
@@ -44,13 +74,16 @@ export class RmsQrComponent {
 
   onCodeResult(result: string) {
     this.scanResult = result;
-    this.scannerView = false;
-    this.itemView = true;
     this.rmService.getSingleRm(result).subscribe((res) => {
       console.log('Item details:', res);
-
+      
       this.scannedRm = res;
+    this.balPcsEntered = this.scannedRm.balancePieces!;
+
     });
+    this.scannerView = false;
+    this.itemView = true;
+
   }
 
   formatDate(dateString: string) {

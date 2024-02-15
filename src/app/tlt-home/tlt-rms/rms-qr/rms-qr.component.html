@@ -64,7 +64,7 @@
       (click)="showIssueRmForm()"
         >
         <span class="font-medium text-white transition-colors group-hover:text-red-600 group-active:text-red-500">
-          Issue ?
+          ISSUE 
         </span>
 
         <span class="shrink-0 rounded-full border border-current bg-white p-1 text-red-600 group-active:text-red-500">
@@ -79,13 +79,17 @@
   }
 @if (issueForm) {
   <form #form="ngForm" (submit)="issueRM($event)">
-  
 
     <div class="px-5 mb-4 mt-4">
       <label for="issuePcs" class="block mb-2 text-sm font-medium text-white dark:text-gray-800">No. of Pcs to issue</label>
-      <input minlength="1" name="issuePcs" type="number" id="issuePcs"
+      <input minlength="1" name="issuePcsEntered" type="number" id="issuePcs" [ngClass]="{ 'dark:border-red-500,border-red-500': errorr }"
         class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
         placeholder="Enter Pcs Number" required>
+        @if (errorr) {
+          <small class="text-red-600">
+            Can't issue stock more than balance
+          </small>
+        }
     </div>
     <div class="flex justify-center p-3 ">
       <button type="submit"
