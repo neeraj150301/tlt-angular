@@ -6,4 +6,6 @@ export class RmIssue{
     public issuedItemWeight! : number
     public issuedBy! : string 
     public createdAt? : Date
+    public updatedAt? : Date
+
 }

@@ -65,64 +65,64 @@ export class RmsAddrmComponent {
       'warehouse'
     ) as HTMLInputElement;
     const warehouseName = warehouseElement.value;
-    console.log(warehouseName);
+    // console.log(warehouseName);
 
     const docNOElement = form.elements.namedItem('docNO') as HTMLInputElement;
     const docNO = docNOElement.value;
-    console.log(docNO);
+    // console.log(docNO);
 
     const vendorNameElement = form.elements.namedItem(
       'vendorName'
     ) as HTMLInputElement;
     const vendorName = vendorNameElement.value;
-    console.log(vendorName);
-
+    // console.log(vendorName);
+// 
     const receivedPcsElement = form.elements.namedItem(
       'receivedPcs'
     ) as HTMLInputElement;
     const receivedPcs = parseInt(receivedPcsElement.value);
-    console.log(receivedPcs);
+    // console.log(receivedPcs);
 
     const receivedQtyElement = form.elements.namedItem(
       'receivedQty'
     ) as HTMLInputElement;
     const receivedQty = parseInt(receivedQtyElement.value);
-    console.log(receivedQty);
+    // console.log(receivedQty);
 
     const maxLenElement = form.elements.namedItem('maxLen') as HTMLInputElement;
     const maxLen = parseInt(maxLenElement.value);
-    console.log(maxLen);
+    // console.log(maxLen);
 
     const minLenElement = form.elements.namedItem('minLen') as HTMLInputElement;
     const minLen = parseInt(minLenElement.value);
-    console.log(minLen);
+    // console.log(minLen);
 
     const avglengthElement = form.elements.namedItem(
       'avglength'
     ) as HTMLInputElement;
     const avglength = parseInt(avglengthElement.value);
-    console.log(avglength);
+    // console.log(avglength);
 
     const lengthElement = form.elements.namedItem('length') as HTMLInputElement;
     const length = parseInt(lengthElement.value);
-    console.log(length);
+    // console.log(length);
 
     const widthElement = form.elements.namedItem('width') as HTMLInputElement;
     const width = parseInt(widthElement.value);
-    console.log(width);
+    // console.log(width);
 
     const costCenterElement = form.elements.namedItem(
       'costCenter'
     ) as HTMLInputElement;
     const costCenter = costCenterElement.value;
-    console.log(costCenter);
-    console.log(this.Date);
+    // console.log(costCenter);
+    // console.log(this.Date);
     
 
-  console.log(this.selectedRmItemSection);
-  console.log(this.selectedRmItemName);
-  console.log(this.selectedRmItemPgNonPg);
-  console.log(this.selectedRmItemId);
+  // console.log(this.selectedRmItemSection);
+  // console.log(this.selectedRmItemName);
+  // console.log(this.selectedRmItemPgNonPg);
+  // console.log(this.selectedRmItemId);
 
     this.showSuccessMessage = true;
     setTimeout(() => {

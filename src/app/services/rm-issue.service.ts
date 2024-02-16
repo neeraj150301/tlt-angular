@@ -11,15 +11,8 @@ export class RmIssueService {
   http = inject(HttpClient);
 
     getIssueItem() {
-        this.http
+      return this.http
           .get(
-            `${environment.apiBaseUrl}/rm-issue`
-            
-          )
-          .subscribe((res) => {
-            console.log(res);
-          });
-         
+            `${environment.apiBaseUrl}/rm-issue`);
       }
-      
 }

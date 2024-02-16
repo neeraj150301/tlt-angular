@@ -31,6 +31,7 @@ export class RmsViewrmComponent {
   fetchRm() {
     this.rawMaterialService.getRm().subscribe((items) => {
       this.rawMaterials = items;
+      
     });
   }
   formatDate(dateString: string ) {

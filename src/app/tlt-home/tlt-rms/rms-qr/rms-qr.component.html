@@ -12,7 +12,7 @@
       <h5
         class="mb-1 flex items-center font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
         <span class="circle pg-non-pg">
-          {{ scannedRm.pgNonPg === 'nonPg' ? 'NPG' : scannedRm.pgNonPg.toUpperCase() }}</span>
+          {{ scannedRm.pgNonPg! === 'nonPg' ? 'NPG' : scannedRm.pgNonPg.toUpperCase() }}</span>
         <span class="font-bold text-red-600 ">
           {{ scannedRm.documentNo }} </span>
       </h5>
@@ -48,7 +48,7 @@
           + ' MT' : (scannedRm.receivedQuantity === 0 ? '0.00 Kg' : scannedRm.receivedQuantity + ' Kg')}}<br>
           Issued Qty.: {{ scannedRm.issuedQuantity }}<br>
           Balance Qty.: {{ scannedRm.balanceQuantity! > 999 ? (scannedRm.balanceQuantity! / 1000).toFixed(2)
-            + ' MT' : (scannedRm.balanceQuantity === 0 ? '0.00 Kg' : scannedRm.balanceQuantity + ' Kg')}}<br>
+            + ' MT' : (scannedRm.balanceQuantity === 0 ? '0.00 Kg' : (scannedRm.balanceQuantity!).toFixed(2) + ' Kg')}}<br>
           Max Length: {{ scannedRm.maxLength}}<br>
           Pending Days: {{ scannedRm.pendingDays}}<br>
           Width: {{ scannedRm.width}}

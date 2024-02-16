@@ -18,7 +18,7 @@ export class RmService{
             data
           )
           .subscribe((res) => {
-            console.log(res);
+            // console.log(res);
           });
           this.getRm();
       }
@@ -29,7 +29,7 @@ export class RmService{
       return this.http.get<any>(`${environment.apiBaseUrl}/tlt-rms/${id}`)
     }
     issueRm(model : RawMaterial){
-      console.log('scannedRm:',model);
+      // console.log('scannedRm:',model);
       this.http.post(`${environment.apiBaseUrl}/tlt-rms/issue`,model).subscribe((res)=>{
 console.log(res);
       } );
