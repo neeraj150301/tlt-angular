@@ -3,12 +3,13 @@
     <div>
       <div>
         <div class="mb-5 w-64">
-          <label for="date" class="block mb-2 text-sm font-medium text-white dark:text-gray-800">Select Date</label>
+          <label for="date" class="block mb-2 text-sm font-medium text-gray-800 dark:text-gray-800">Select Date</label>
           <div class="relative">
             <input type="hidden" name="date" x-ref="date" />
             <input id="date" type="text" readonly [(ngModel)]="datepickerValue"
               (click)="showDatepicker = !showDatepicker" (keydown.escape)="showDatepicker = false"
-              class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+              class="bg-gray-200 border border-gray-600 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
+              block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
               placeholder="Select date" />
 
             <div class="absolute top-0 right-0 px-3 py-2">

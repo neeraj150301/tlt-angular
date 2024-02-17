@@ -27,29 +27,31 @@
       </div>
     </div>
     }
-    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+    <div class="p-4 border-2 border-gray-700 border-dashed rounded-lg dark:border-gray-700">
       <div class="grid gap-4 mb-4 ">
         <form (submit)="addItem($event) ">
           <div class="mb-6 mt-4">
-            <label for="item_name" class="block mb-2 text-lg font-medium text-white dark:text-gray-800">Item
+            <label for="item_name" class="block mb-2 text-lg font-medium text-gray-800 dark:text-gray-800">Item
               Name</label>
             <input minlength="1" name="itemname" type="text" id="item_name"
-              class="bg-gray-50 border border-gray-300 text-gray-800 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+              class="bg-gray-200 border border-gray-600 text-gray-800 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
               placeholder="Enter Item Name" required>
           </div>
           <div class="mb-6 mt-8">
-            <label for="pgnonpg" class="block mb-2 text-lg font-medium text-white dark:text-gray-800">PG - Non
+            <label for="pgnonpg" class="block mb-2 text-lg font-medium text-gray-800 dark:text-gray-800">PG - Non
               PG</label>
             <select name="pgnonpg" id="pgnonpg"
-              class="bg-gray-50 border border-gray-300 text-gray-800 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              class="bg-gray-200 border border-gray-600 text-gray-800 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+               dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
               <option value="pg">PG</option>
               <option value="nonPg">Non PG</option>
             </select>
           </div>
           <div class="mb-6 mt-8">
-            <label for="section" class="block mb-2 text-lg font-medium text-white dark:text-gray-800">Section</label>
+            <label for="section" class="block mb-2 text-lg font-medium text-gray-800 dark:text-gray-800">Section</label>
             <select name="section" id="section"
-              class="bg-gray-50 border border-gray-300 text-gray-800 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              class="bg-gray-200 border border-gray-600 text-gray-800 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+               dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
               <option value="40 X 40 X 4">40 X 40 X 4</option>
               <option value="40 X 40 X 5">40 X 40 X 5</option>
               <option value="40 X 40 X 6">40 X 40 X 6</option>
@@ -113,7 +115,8 @@
           </div>
           <div class="flex justify-center">
             <button type="submit"
-              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">Submit</button>
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center
+               dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">Submit</button>
           </div>
 
         </form>

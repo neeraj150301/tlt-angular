@@ -2,7 +2,7 @@
   <div class="p-4 sm:ml-52 mt-2 w-full ">
     @if (this.rawMaterials.length === 0 ) {
     <div
-      class="p-4 mt-4 border-2 border-gray-200 border-dashed rounded-lg dark:text-red-500 font-bold dark:border-gray-700 flex justify-center">
+      class="p-4 mt-4 border-2 border-gray-700 text-red-500 border-dashed rounded-lg dark:text-red-500 font-bold dark:border-gray-700 flex justify-center">
       <div>
         NO RAW MATERIAL TO DISPLAY</div>
     </div>
@@ -53,7 +53,8 @@
           <div class="mx-4">
             Received Qty.: {{ rawMaterial.receivedQuantity > 999 ? (rawMaterial.receivedQuantity / 1000).toFixed(2)
             + ' MT' : (rawMaterial.receivedQuantity === 0 ? '0.00 Kg' : rawMaterial.receivedQuantity + ' Kg')}}<br>
-            Issued Qty.: {{ (rawMaterial.issuedQuantity!).toFixed(2) }}<br>
+            Issued Qty.:  {{ rawMaterial.issuedQuantity! > 999 ? (rawMaterial.issuedQuantity! / 1000).toFixed(2)
+              + ' MT' : (rawMaterial.issuedQuantity === 0 ? '0.00 Kg' : (rawMaterial.issuedQuantity!).toFixed(2) + ' Kg')}}<br>
             Balance Qty.: {{ rawMaterial.balanceQuantity! > 999 ? (rawMaterial.balanceQuantity! / 1000).toFixed(2)
               + ' MT' : (rawMaterial.balanceQuantity === 0 ? '0.00 Kg' : (rawMaterial.balanceQuantity!).toFixed(2) + ' Kg')}}<br>
             Max Length: {{ rawMaterial.maxLength}}<br>

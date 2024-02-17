@@ -27,18 +27,18 @@
       </div>
     </div>
     }
-    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 ">
+    <div class="p-4 border-2 border-gray-700 border-dashed rounded-lg dark:border-gray-700 ">
       <div class="grid gap-4 mb-4 ">
         <form (submit)="addRm($event) ">
 
           <div (click)="showitemList()"
-            class=" p-2 mb-2 mt-2 border border-dashed rounded-lg dark:border-gray-700 d-flex justify-content-center font-semibold dark:bg-slate-300">
+            class=" p-2 mb-2 mt-2 border border-gray-700 border-dashed bg-slate-300 rounded-lg dark:border-gray-700 d-flex justify-content-center font-semibold dark:bg-slate-300">
             Select Item
           </div>
           @if (showItemList) {
           @if (this.RmItems.length === 0 ) {
           <div
-            class="p-4 mt-2 border-2 dark:text-red-500 font-bold border-gray-200 border-dashed rounded-lg dark:border-gray-700 d-flex justify-content-center ">
+            class="p-4 mt-2 border-2 text-red-500 dark:text-red-500 font-bold border-gray-700 border-dashed rounded-lg dark:border-gray-700 d-flex justify-content-center ">
             <div>
               NO ITEMS TO DISPLAY</div>
           </div>
@@ -94,86 +94,98 @@
 
           <div class="mb-2 mt-2">
             <label for="warehouse"
-              class="block mb-2 text-sm font-medium text-white dark:text-gray-800">Warehouse</label>
+              class="block mb-2 text-sm font-medium text-text-gray-800 dark:text-gray-800">Warehouse</label>
             <select name="warehouse" id="warehouse"
-              class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              class="bg-gray-200 border border-gray-600 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+               dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
               <option value="pgTltRMSteel">PG-TLT(RM STEEL)</option>
               <option value="tltRMSteel">TLT(RM STEEL)</option>
             </select>
           </div>
           <div class="mb-4 mt-4">
-            <label for="docNo" class="block mb-2 text-sm font-medium text-white dark:text-gray-800">Document
+            <label for="docNo" class="block mb-2 text-sm font-medium text-text-gray-800 dark:text-gray-800">Document
               Number</label>
             <input minlength="1" name="docNO" type="text" id="docNo"
-              class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+              class="bg-gray-200 border border-gray-600 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+               dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
               placeholder="Enter Document Number" required>
           </div>
           <div>
             <app-date-picker (datepickerValueChange)="onDatepickerValueChange($event)"></app-date-picker>
           </div>
           <div class="mb-4 mt-4">
-            <label for="vendorName" class="block mb-2 text-sm font-medium text-white dark:text-gray-800">Vendor
+            <label for="vendorName" class="block mb-2 text-sm font-medium text-gray-800 dark:text-gray-800">Vendor
               Name</label>
             <input minlength="1" name="vendorName" type="text" id="vendorName"
-              class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+              class="bg-gray-200 border border-gray-600 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+               dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
               placeholder="Enter Vendor Name" required>
           </div>
           <div class="mb-4 mt-4">
-            <label for="receivedPcs" class="block mb-2 text-sm font-medium text-white dark:text-gray-800">Received
+            <label for="receivedPcs" class="block mb-2 text-sm font-medium text-gray-800 dark:text-gray-800">Received
               Pcs</label>
             <input minlength="1" name="receivedPcs" type="number" id="receivedPcs"
-              class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+              class="bg-gray-200 border border-gray-600 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+               dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
               placeholder="Enter Received Pcs" required>
           </div>
           <div class="mb-4 mt-4">
-            <label for="receivedQty" class="block mb-2 text-sm font-medium text-white dark:text-gray-800">Received
+            <label for="receivedQty" class="block mb-2 text-sm font-medium text-gray-800 dark:text-gray-800">Received
               Quantity (KG)</label>
             <input minlength="1" name="receivedQty" type="number" id="receivedQty"
-              class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+              class="bg-gray-200 border border-gray-600 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+               dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
               placeholder="Enter Received Quantity (KG)" required>
           </div>
           <div class="mb-4 mt-4">
-            <label for="maxLen" class="block mb-2 text-sm font-medium text-white dark:text-gray-800">Max Length</label>
+            <label for="maxLen" class="block mb-2 text-sm font-medium text-gray-800 dark:text-gray-800">Max Length</label>
             <input minlength="1" name="maxLen" type="number" id="maxLen"
-              class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+              class="bg-gray-200 border border-gray-600 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+               dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
               placeholder="Enter Max Length" required>
           </div>
           <div class="mb-4 mt-4">
-            <label for="minLen" class="block mb-2 text-sm font-medium text-white dark:text-gray-800">Min Length</label>
+            <label for="minLen" class="block mb-2 text-sm font-medium text-gray-800 dark:text-gray-800">Min Length</label>
             <input minlength="1" name="minLen" type="number" id="minLen"
-              class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+              class="bg-gray-200 border border-gray-600 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+               dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
               placeholder="Enter Min Length" required>
           </div>
           <div class="mb-4 mt-4">
-            <label for="avglength" class="block mb-2 text-sm font-medium text-white dark:text-gray-800">Average
+            <label for="avglength" class="block mb-2 text-sm font-medium text-gray-800 dark:text-gray-800">Average
               length</label>
             <input minlength="1" name="avglength" type="number" id="avglength"
-              class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+              class="bg-gray-200 border border-gray-600 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+               dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
               placeholder="Enter Average length" required>
           </div>
           <div class="mb-4 mt-4">
-            <label for="length" class="block mb-2 text-sm font-medium text-white dark:text-gray-800">Length</label>
+            <label for="length" class="block mb-2 text-sm font-medium text-gray-800 dark:text-gray-800">Length</label>
             <input minlength="1" name="length" type="number" id="length"
-              class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+              class="bg-gray-200 border border-gray-600 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block 
+              w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
               placeholder="Enter Length" required>
           </div>
           <div class="mb-4 mt-4">
-            <label for="width" class="block mb-2 text-sm font-medium text-white dark:text-gray-800">Width</label>
+            <label for="width" class="block mb-2 text-sm font-medium text-gray-800 dark:text-gray-800">Width</label>
             <input minlength="1" name="width" type="number" id="width"
-              class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+              class="bg-gray-200 border border-gray-600 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+               dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
               placeholder="Enter Width" required>
           </div>
           <div class="mb-4 mt-4">
-            <label for="costCenter" class="block mb-2 text-sm font-medium text-white dark:text-gray-800">Cost
+            <label for="costCenter" class="block mb-2 text-sm font-medium text-gray-800 dark:text-gray-800">Cost
               Center</label>
             <input minlength="1" name="costCenter" type="text" id="costCenter"
-              class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+              class="bg-gray-200 border border-gray-600 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+              dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
               placeholder="Enter Cost Center" required>
           </div>
           @if (hideItemList){
           <div class="flex justify-center ">
             <button type="submit"
-              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">Submit</button>
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg 
+              text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">Submit</button>
           </div>}
 
         </form>

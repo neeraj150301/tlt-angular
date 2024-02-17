@@ -15,8 +15,8 @@
       @if (!isRmsRouteActive) {
       <ul class="space-y-2 font-light">
          <li>
-            <a routerLink="/admin/admin-dash" [routerLinkActive]="['dark:bg-gray-700']"
-               class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a routerLink="/admin/admin-dash" [routerLinkActive]="['dark:bg-gray-700', 'bg-gray-700']"
+               class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700 group">
                <svg
                   class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                   aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
@@ -29,8 +29,8 @@
             </a>
          </li>
          <li>
-            <a routerLink="/admin/admin-rm" [routerLinkActive]="['dark:bg-gray-700']"
-               class="flex items-center p-2 text-white rounded-lg dark:text-white hover:hover:bg-gray-700 dark:hover:bg-gray-700 group">
+            <a routerLink="/admin/admin-rm" [routerLinkActive]="['dark:bg-gray-700', 'bg-gray-700']"
+               class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700 group">
                <svg
                   class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                   aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
@@ -42,8 +42,8 @@
             </a>
          </li>
          <li>
-            <a routerLink="/admin/admin-yard" [routerLinkActive]="['dark:bg-gray-700']"
-               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a routerLink="/admin/admin-yard" [routerLinkActive]="['dark:bg-gray-700', 'bg-gray-700']"
+               class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700 group">
 
                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                   class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
@@ -60,8 +60,8 @@
             </a>
          </li>
          <li>
-            <a routerLink="/admin/admin-um" [routerLinkActive]="['dark:bg-gray-700',]"
-               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a routerLink="/admin/admin-um" [routerLinkActive]="['dark:bg-gray-700', 'bg-gray-700']"
+               class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700 group">
                <svg
                   class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                   aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
@@ -76,8 +76,8 @@
       @if (isRmsRouteActive) {
       <ul class="space-y-2 font-light">
          <li>
-            <a routerLink="/rms/rms-viewrm" [routerLinkActive]="['dark:bg-gray-700']"
-               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a routerLink="/rms/rms-viewrm" [routerLinkActive]="['dark:bg-gray-700', 'bg-gray-700']"
+               class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700 group">
                <svg
                   class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                   aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
@@ -90,8 +90,8 @@
             </a>
          </li>
          <li>
-            <a routerLink="/rms/rms-addrm" [routerLinkActive]="['dark:bg-gray-700']"
-               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a routerLink="/rms/rms-addrm" [routerLinkActive]="['dark:bg-gray-700', 'bg-gray-700']"
+               class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700 group">
                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                   class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                   <path fill-rule="evenodd"
@@ -105,8 +105,8 @@
             </a>
          </li>
          <li>
-            <a routerLink="/rms/rms-items" [routerLinkActive]="['dark:bg-gray-700']" (click)="toggleDropdown()"
-               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a routerLink="/rms/rms-items" [routerLinkActive]="['dark:bg-gray-700', 'bg-gray-700']" (click)="toggleDropdown()"
+               class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700 group">
 
                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                   class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
@@ -123,8 +123,8 @@
             </a>
             <ul [ngClass]="{'hidden': !isDropdownOpen}" id="dropdown-example" class="hidden py-2 space-y-2">
                <li>
-                  <a routerLink="/rms/rms-items/rms-viewItems" [routerLinkActive]="['dark:bg-gray-700',]"
-                     class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                  <a routerLink="/rms/rms-items/rms-viewItems" [routerLinkActive]="['dark:bg-gray-700', 'bg-gray-700']"
+                     class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700 dark:text-white dark:hover:bg-gray-700">
                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                         class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                         <path fill-rule="evenodd"
@@ -137,8 +137,8 @@
                   </a>
                </li>
                <li>
-                  <a routerLink="/rms/rms-items/rms-addItems" [routerLinkActive]="['dark:bg-gray-700',]"
-                     class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                  <a routerLink="/rms/rms-items/rms-addItems" [routerLinkActive]="['dark:bg-gray-700', 'bg-gray-700']"
+                     class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700 dark:text-white dark:hover:bg-gray-700">
                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                         class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                         <path fill-rule="evenodd"
@@ -151,8 +151,8 @@
             </ul>
          </li>
          <li>
-            <a routerLink="/rms/rms-issues" [routerLinkActive]="['dark:bg-gray-700',]"
-               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a routerLink="/rms/rms-issues" [routerLinkActive]="['dark:bg-gray-700', 'bg-gray-700']"
+               class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700 group">
                <svg
                   class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                   aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">

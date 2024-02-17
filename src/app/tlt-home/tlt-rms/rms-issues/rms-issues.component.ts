@@ -9,37 +9,33 @@ import { RawMaterial } from '../../../Model/tltRawMaterialModel';
   standalone: true,
   imports: [],
   templateUrl: './rms-issues.component.html',
-  styleUrl: './rms-issues.component.css'
+  styleUrl: './rms-issues.component.css',
 })
 export class RmsIssuesComponent {
-  constructor(private rmIssueService: RmIssueService, private rmService  : RmService) {}
-  issueItems: any = []; 
-  // doc : 
-  docId: any =[];
-  // RmIssue
-  ngOnInit() {
-    
-    this.rmIssueService.getIssueItem().subscribe((items) => {
+  constructor(
+    private rmIssueService: RmIssueService,
+    private rmService: RmService
+  ) {}
+  issueItems: any = [];
+
+  async getDocs() {
+    for (const issueItem of this.issueItems) {
+      const rmdoc = await this.rmService
+        .getSingleRm(issueItem.issuedDocumentId)
+        .toPromise();
+      issueItem.documentNo = rmdoc.documentNo;
+      issueItem.pgNonPg = rmdoc.pgNonPg;
+    }
+  }
+
+   ngOnInit() {
+    this.rmIssueService.getIssueItem().subscribe( (items) => {
       this.issueItems = items;
       console.log(this.issueItems);
-    
-  });
-  this.issueItems.forEach((item: any) => {
-    const issuedDocumentId = item.issuedDocumentId;
-    this.rmService.getSingleRm(issuedDocumentId).subscribe((rmdoc) => {
-      this.docId = rmdoc;
-      console.log('DOC',this.docId);
+      this.getDocs();
     });
-});
-    
   }
-  // getdoc(id : string){
-  //   this.rmService.getSingleRm(id).subscribe((rmdoc) => {
-        
-  //     this.docId = rmdoc;
-  //     return this.docId.documentNo;
-  //   });
-  // }
+
   formatDate(dateString: string) {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', {
