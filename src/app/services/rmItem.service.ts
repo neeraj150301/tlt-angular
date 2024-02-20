@@ -18,7 +18,7 @@ export class RmItemService{
             data
           )
           .subscribe((res) => {
-            console.log(res);
+            // console.log(res);
           });
           this.getRmItems();
       }

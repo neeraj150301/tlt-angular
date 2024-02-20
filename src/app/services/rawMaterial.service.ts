@@ -31,7 +31,7 @@ export class RmService{
     issueRm(model : RawMaterial){
       // console.log('scannedRm:',model);
       this.http.post(`${environment.apiBaseUrl}/tlt-rms/issue`,model).subscribe((res)=>{
-console.log(res);
+// console.log(res);
       } );
     }
 }

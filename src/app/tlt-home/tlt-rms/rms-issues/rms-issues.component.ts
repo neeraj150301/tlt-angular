@@ -31,7 +31,7 @@ export class RmsIssuesComponent {
    ngOnInit() {
     this.rmIssueService.getIssueItem().subscribe( (items) => {
       this.issueItems = items;
-      console.log(this.issueItems);
+      // console.log(this.issueItems);
       this.getDocs();
     });
   }

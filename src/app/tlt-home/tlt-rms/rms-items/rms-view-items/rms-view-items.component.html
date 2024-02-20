@@ -23,7 +23,7 @@
           <div class="pl-1 pb-1 ">
             Section:<span class="mr-4 font-normal"> {{ rmItem.section }}</span> 
             Stock: {{ rmItem.stockAmount > 999 ? (rmItem.stockAmount / 1000).toFixed(2)
-             + ' MT' : (rmItem.stockAmount === 0 ? '0.00 Kg' : rmItem.stockAmount + ' Kg')}}
+             + ' MT' : (rmItem.stockAmount === 0 ? '0.00 Kg' : rmItem.stockAmount.toFixed(2) + ' Kg')}}
           </div>
       </div>
     </div>

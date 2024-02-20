@@ -27,6 +27,7 @@ export class RmsQrComponent {
   balQty: number = 0;
   balPcs: number = 0;
   errorr: boolean = false;
+  
 
   constructor(public router: Router, public rmService: RmService) {}
   ngOnInit(): void {}
@@ -40,8 +41,8 @@ export class RmsQrComponent {
     this.issuePcsEntered = parseInt(pcss);
     console.log('bal:', this.balPcsEntered);
     console.log('issuePcs:', this.issuePcsEntered);
-
-    if (this.issuePcsEntered > this.balPcsEntered) {
+   
+    if (this.issuePcsEntered > this.balPcsEntered || this.issuePcsEntered < 1 || !this.issuePcsEntered) {
       // console.log('Error: Issue quantity cannot exceed balance quantity.');
       this.errorr = true;
       return;
@@ -53,18 +54,20 @@ export class RmsQrComponent {
     this.balQty =
       this.scannedRm.balanceQuantity! - this.perPcWt * this.issuePcsEntered;
     this.balPcs = this.scannedRm.balancePieces! - this.issuePcsEntered;
-    console.log('perPcWt:', this.perPcWt);
-    console.log('issuedQty:', this.issuedQty);
-    console.log('issuedPcs:', this.issuedPcs);
-    console.log('balQty:', this.balQty);
+    // console.log('perPcWt:', this.perPcWt);
+    // console.log('issuedQty:', this.issuedQty);
+    // console.log('issuedPcs:', this.issuedPcs);
+    // console.log('balQty:', this.balQty);
 
-    console.log('balPcs:', this.balPcs);
-    this.scannedRm.issuedQuantity = this.issuedQty;
+    // console.log('balPcs:', this.balPcs);
+    this.scannedRm.issuedQuantity = this.scannedRm.issuedQuantity! + this.perPcWt * this.issuePcsEntered;
     this.scannedRm.issuedPieces = this.issuedPcs;
     this.scannedRm.balanceQuantity = this.balQty;
     this.scannedRm.balancePieces = this.balPcs;
 
     this.rmService.issueRm(this.scannedRm);
+    this.router.navigate(['./rms/rms-issues']);
+
   }
 
   showIssueRmForm() {
