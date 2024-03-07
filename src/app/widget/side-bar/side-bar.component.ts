@@ -11,6 +11,8 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
 export class SideBarComponent {
   isRmsRouteActive: boolean = false;
   isDropdownOpen: boolean = false;
+  isDropdownUMOpen: boolean = false;
+
   isExpanded = signal(false);
   isSideBarOpen: boolean = false;
 
@@ -39,5 +41,8 @@ export class SideBarComponent {
   }
   toogleSideBar() {
     this.isSideBarOpen = !this.isSideBarOpen;
+  }
+  toggleUMDropdown(): void {
+    this.isDropdownUMOpen = !this.isDropdownUMOpen;
   }
 }

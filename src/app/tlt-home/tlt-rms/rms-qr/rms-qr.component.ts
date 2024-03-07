@@ -37,10 +37,10 @@ export class RmsQrComponent {
     const form = event.target as HTMLFormElement;
     const pcs = form.elements.namedItem('issuePcsEntered') as HTMLInputElement;
     const pcss = pcs.value;
-    console.log('pcs:', pcss);
+    // console.log('pcs:', pcss);
     this.issuePcsEntered = parseInt(pcss);
-    console.log('bal:', this.balPcsEntered);
-    console.log('issuePcs:', this.issuePcsEntered);
+    // console.log('bal:', this.balPcsEntered);
+    // console.log('issuePcs:', this.issuePcsEntered);
    
     if (this.issuePcsEntered > this.balPcsEntered || this.issuePcsEntered < 1 || !this.issuePcsEntered) {
       // console.log('Error: Issue quantity cannot exceed balance quantity.');
