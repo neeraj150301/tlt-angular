@@ -1,6 +1,34 @@
 <div class="sm:py-6 flex justify-center">
   <div class="px-4 sm:p-4 sm:ml-52 mt-2 w-full">
     @if (showSuccessMessage) {
+    <div class="flex justify-center">
+      <div role="alert" class="rounded-xl border border-gray-100 bg-white p-4 w-96 mb-4 ">
+        <div class="flex items-start gap-4 ">
+          <span class="text-green-600">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="h-6 w-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </span>
+          <div class="flex-1">
+            <strong class="block font-medium text-gray-900"> Changes saved </strong>
+            <p class="mt-1 text-sm text-gray-700">User is removed successfully.</p>
+          </div>
+          <!-- Dismiss button -->
+          <button (click)="showSuccessMessage=false" class="text-gray-500 transition hover:text-gray-600">
+            <span class="sr-only">Dismiss popup</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="h-6 w-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+    
+    @if (showResetPinSuccessMessage) {
       <div class="flex justify-center">
         <div role="alert" class="rounded-xl border border-gray-100 bg-white p-4 w-96 mb-4 ">
           <div class="flex items-start gap-4 ">
@@ -13,7 +41,7 @@
             </span>
             <div class="flex-1">
               <strong class="block font-medium text-gray-900"> Changes saved </strong>
-              <p class="mt-1 text-sm text-gray-700">User is removed successfully.</p>
+              <p class="mt-1 text-sm text-gray-700">Pin Reset Successful.</p>
             </div>
             <!-- Dismiss button -->
             <button (click)="showSuccessMessage=false" class="text-gray-500 transition hover:text-gray-600">
@@ -39,46 +67,105 @@
     @for (tltUser of Users; track $index;) {
     <div
       class="relative flex flex-col mt-4 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-full border-2 border-gray-200 border-solid">
-      <div class="pt-2 pl-4">
-        <h5
-          class="block mb-1 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-          {{ tltUser.fullName }}
-        </h5>
-        <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-        <div class="pb-1">
-          {{ tltUser.phoneNumber }}
+      <div class="pt-2 pl-4 flex justify-between items-center">
+        <div>
+          <h5
+            class="block mb-1 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+            {{ tltUser.fullName }}
+          </h5>
+          <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+            <span class="pb-1">{{ tltUser.phoneNumber }}</span>
+          </p>
         </div>
+        <div class="flex ">
 
+          <button (click)="preResetPin(tltUser)" class="mb-2 mx-2 px-2 group relative inline-block overflow-hidden border border-red-600 py-2 focus:outline-none focus:ring"
+            >
+            <span
+              class="absolute inset-y-0 left-0 w-[2px] bg-red-600 transition-all group-hover:w-full group-active:bg-red-500"></span>
+
+            <span class="relative text-sm font-medium text-red-600 transition-colors group-hover:text-white">
+              Reset Pin
+            </span>
+          </button>
+
+          <button (click)="preRemoveTltUser(tltUser)" class="mx-4 mb-2 px-2 group relative inline-block overflow-hidden border border-red-600 py-2 focus:outline-none focus:ring"
+            >
+            <span
+              class="absolute inset-y-0 right-0 w-[2px] bg-red-600 transition-all group-hover:w-full group-active:bg-red-500"></span>
+
+            <span class="relative text-sm font-medium text-red-600 transition-colors group-hover:text-white">
+              Remove
+            </span>
+          </button>
+
+<!-- 
+          <button
+            class="m-2 px-2 rounded-2xl border border-red-600 py-2 text-sm font-medium text-red-600 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:text-red-500">
+            Reset Pin
+          </button>
+
+          <button (click)="preRemoveTltUser(tltUser)"
+            class="m-2 px-2 rounded-2xl border border-red-600 py-2 text-sm font-medium text-red-600 hover:bg-red-600 hover:text-white focus:outline-none focus:ring active:bg-red-500">
+            Remove
+          </button> -->
+
+        </div>
       </div>
-      <!-- <button
-        class="absolute px-2 rounded-3xl right-0 m-3  border border-red-600 bg-red-500 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-red-500 focus:outline-none focus:ring active:text-red-500">
-        Remove
-      </button> -->
-      <button (click)="preRemoveTltUser(tltUser)"
-        class="absolute px-2 rounded-2xl right-0 m-3 border border-red-600 py-3 text-sm font-medium text-red-600 hover:bg-red-600 hover:text-white focus:outline-none focus:ring active:bg-red-500">
-        Remove
-      </button>
     </div>
     }
+
+
     @if (showWarning) {
-      
+
+    <div class="fixed inset-0 bg-black opacity-50 z-40"></div>
+
+    <!-- Modal -->
+    <div
+      class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+      <div class="rounded-lg bg-white p-8 shadow-2xl">
+        <h2 class="text-lg font-bold">Are you sure you want to remove {{removeUser.fullName}}?</h2>
+
+        <p class="mt-2 text-sm text-gray-500">
+          Doing this will remove {{removeUser.fullName}} from TLT user list. Are you 100% sure?
+        </p>
+
+        <div class="mt-4 flex gap-2">
+          <button (click)="removeTltUser(removeUser)"
+            class="rounded bg-green-50 px-4 py-2 text-sm font-medium text-green-600 hover:bg-green-100 hover:border hover:border-green-700">
+            Yes, I'm sure
+          </button>
+
+          <button (click)="showWarning = false"
+            class="rounded bg-gray-50 px-4 py-2 text-sm font-medium text-gray-600 hover:border hover:bg-gray-100 hover:border-slate-400">
+            No, go back
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+    @if (showResetWarning) {
+
       <div class="fixed inset-0 bg-black opacity-50 z-40"></div>
   
       <!-- Modal -->
-      <div class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+      <div
+        class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
         <div class="rounded-lg bg-white p-8 shadow-2xl">
-          <h2 class="text-lg font-bold">Are you sure you want to remove {{removeUser.fullName}}?</h2>
+          <h2 class="text-lg font-bold">Are you sure you want to reset Pin of {{resetPinUser.fullName}}?</h2>
   
           <p class="mt-2 text-sm text-gray-500">
-            Doing that will remove {{removeUser.fullName}} from TLT user list. Are you 100% sure?
+            Doing this will reset pin of {{resetPinUser.fullName}}. Are you 100% sure?
           </p>
   
           <div class="mt-4 flex gap-2">
-            <button (click)="removeTltUser(removeUser)" class="rounded bg-green-50 px-4 py-2 text-sm font-medium text-green-600">
+            <button (click)="resetPin(resetPinUser)"
+              class="rounded bg-green-50 px-4 py-2 text-sm font-medium text-green-600 hover:bg-green-100 hover:border hover:border-green-700">
               Yes, I'm sure
             </button>
   
-            <button (click)="showWarning = false" class="rounded bg-gray-50 px-4 py-2 text-sm font-medium text-gray-600">
+            <button (click)="showResetWarning = false"
+              class="rounded bg-gray-50 px-4 py-2 text-sm font-medium text-gray-600 hover:border hover:bg-gray-100 hover:border-slate-400">
               No, go back
             </button>
           </div>

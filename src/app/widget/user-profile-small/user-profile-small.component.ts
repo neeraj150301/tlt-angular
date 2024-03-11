@@ -14,7 +14,7 @@ export class UserProfileSmallComponent {
   userService = inject(UserService);
   router = inject(Router);
   ngOnInit(): void {
-  console.log(this.userService.currentUser())
+  console.log(this.userService.currentUser());
     
   }
   logout() {

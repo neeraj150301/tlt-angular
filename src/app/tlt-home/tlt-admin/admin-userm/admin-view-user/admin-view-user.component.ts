@@ -14,9 +14,15 @@ import { environment } from '../../../../environment';
 export class AdminViewUserComponent {
   constructor(private userService: UserService) {}
   showSuccessMessage =  false;
+  showResetPinSuccessMessage =  false;
+
   http = inject(HttpClient);
   showWarning = false;
+  showResetWarning = false;
+
   removeUser!: UserInterface;
+  resetPinUser!: UserInterface;
+
   Users: any[] = [];
   ngOnInit() {
     this.fetchtltUsers();
@@ -33,6 +39,24 @@ export class AdminViewUserComponent {
     this.removeUser = user;
     this.showWarning = true;
   }
+
+  preResetPin(user: UserInterface){
+    this.resetPinUser = user;
+
+    this.showResetWarning = true;
+  }
+
+  resetPin(user: UserInterface){
+    this.http.patch(`${environment.apiBaseUrl}/api/auth/users/reset/${user._id}`,user._id).subscribe((res) => {
+      // console.log(res);
+    });
+    this.showResetWarning = false;
+    this.showResetPinSuccessMessage = true;
+    setTimeout(() => {
+      this.showResetPinSuccessMessage = false;
+    },2000);
+  }
+
   removeTltUser(user: UserInterface) {
     user.apps = user.apps.filter((app) => app !== 'tlt');
     this.http
@@ -45,6 +69,7 @@ export class AdminViewUserComponent {
     setTimeout(() => {
       this.showSuccessMessage = false;
     },2000);
+
       this.fetchtltUsers();
 
   }
