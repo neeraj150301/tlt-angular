@@ -1,4 +1,4 @@
 export const environment = {
-  apiBaseUrl: 'http://192.168.13.92:80',
+  apiBaseUrl: 'https://it.rrispat.in',
 };
 // 192.168.13.75
